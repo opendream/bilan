@@ -18,6 +18,9 @@ $link-light-color: #ccc;
       color: lighten($color, 20%);
       text-decoration: underline;
     }
+    &:visited {
+      color: $color;
+    }
   }
 }
 
