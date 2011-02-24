@@ -6,26 +6,27 @@ $text-color: #333;
 $text-dark-color: $text-color;
 $text-light-color: #eee;
 
-$link-color: #999;
+$link-color: #666;
 $link-dark-color: $link-color;
 $link-light-color: #ccc;
 
-@mixin link($color) {
+$tab-bgcolor: $bgcolor;
+$tab-active-bgcolor: $content-bgcolor;
+
+// -----------------------------------------------------------------------------
+
+@mixin link($color=$link-color) {
   a {
     color: $color;
     text-decoration: none;
+    &:visited {
+      color: $color;
+    }
     &:hover {
       color: lighten($color, 20%);
       text-decoration: underline;
     }
-    &:visited {
-      color: $color;
-    }
   }
-}
-
-@mixin box {
-  padding: 20px 0;
 }
 
 @mixin inline-list {
@@ -33,25 +34,66 @@ $link-light-color: #ccc;
     list-style-type: none;
     margin: 0;
     padding: 0;
-    li {
-      display: inline;
-      padding-right: 10px;
-      &.last {
-        padding-right: 0;
-      }
+  }
+  li {
+    display: inline;
+    margin-right: 10px;
+    &.last {
+      margin-right: 0;
     }
   }
 }
 
+@mixin tab-list {
+  @include link($link-light-color);
+  ul {
+    list-style-type: none;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+  }
+  li {
+    display: block;
+    float: left;
+    background-color: $tab-bgcolor;
+    padding: 5px 10px;
+    margin-right: 3px;
+    &.last {
+      margin-right: 0px;
+    }
+    &.active {
+      @include link($text-color); 
+      background-color: $tab-active-bgcolor;
+    }
+  }
+}
+
+@mixin row {
+  padding: 10px 0;
+}
+
+// -----------------------------------------------------------------------------
+
 body {
   @include blueprint-typography-defaults;
-  @include link($link-color);
+  @include link;
   font-family: sans-serif;
   color: $text-dark-color;
   background-color: $bgcolor;
 }
 
-#container {
+form {
+  input, textarea {
+    font-family: sans-serif; 
+  }
+}
+
+label {
+  font-weight: bold;
+  padding-right: 10px;
+}
+
+.container {
   @include container;
 }
 
@@ -59,6 +101,8 @@ body {
   @include column(8, true);
   @include prepend($blueprint-grid-columns - 8);
   @include inline-list;
+  @include link($link-light-color);
+  color: $text-light-color;
   padding-top: 7px;
   padding-bottom: 7px;
   text-align: right;
@@ -68,27 +112,74 @@ body {
   background-color: $header-bgcolor;
 }
 #content-wrapper {
-  @include box;
   background-color: $content-bgcolor;
+  padding: 20px 0;
 }
 #header, #footer {
   @include column($blueprint-grid-columns, true);
-  @include box;
+  padding-top: 15px;
+}
+#header {
+  #banner {
+    height: 50px;
+  }
+  #navigations {
+    @include tab-list;
+    overflow: hidden;
+    .left {
+      float: left;  
+    }
+    .right {
+      float: right;  
+    }
+  }
 }
 #footer {
   color: $text-light-color;
 }
-#content {
-  @include column($blueprint-grid-columns, true);
+
+#breadcrumb {
+  margin-bottom: 20px;
 }
 
-  //#content {
-    // Two thirds of the grid columns, rounding up.
-    // With 24 cols, this is 16.
-    //$content-columns: ceil(2 * $blueprint-grid-columns / 3);
-    //@include column($content-columns); }
-  //#sidebar {
-    // One third of the grid columns, rounding down. With 24 cols, this is 8.
-    //$sidebar-columns: floor($blueprint-grid-columns / 3);
-    // true means it's the last column in the row
-    //@include column($sidebar-columns, true); } }
+.one-col {
+  #content {
+    @include column($blueprint-grid-columns, true);
+  }
+}
+
+.two-cols {
+  overflow: hidden;
+  #content {
+    $content-columns: ceil(3 * $blueprint-grid-columns / 4);
+    @include column($content-columns);
+  }
+  #sidebar {
+    $sidebar-columns: floor($blueprint-grid-columns / 4);
+    @include column($sidebar-columns, true);
+  }
+}
+
+ul.page {
+  margin: 0;
+  padding-left: 0;
+  li {
+    margin-bottom: 30px;
+  }
+  li.last, li li {
+    margin-bottom: 0px;
+  }
+}
+
+.notice, .alert {
+  padding: 20px;
+  margin-bottom: 15px;
+}
+.notice {
+  color: green;
+  border: 1px solid green;
+}
+.alert {
+  color: #e66;
+  border: 1px solid #e66;
+}

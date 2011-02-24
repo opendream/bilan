@@ -18,30 +18,16 @@ html
 					== render :partial => 'shared/user_ribbon'
 		
 			#header-wrapper
-				.container
-					#header
-						#banner
-							| header
-						#navigations
-							== render :partial => 'shared/navigation'
+				.one-col
+					.container
+						#header
+							| This is the header
 
 			#content-wrapper
 				.container
-					.two-cols
-						#content
-							- if flash[:notice]
-								.notice
-									= flash[:notice]
-							- elsif flash[:alert]
-								.alert
-									= flash[:alert]
-							#breadcrumb
-								= breadcrumb
-							= yield
-						#sidebar
-							= yield :sidebar
+					#content
+						= yield
 
 			.container
 				#footer
-					| footer
-					
+					| This is the footer

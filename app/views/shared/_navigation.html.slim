@@ -1,0 +1,20 @@
+.left
+	ul
+		- if @active_tab == 'dashboard'
+			li.active
+				a href="#{dashboard_path}" = _('Dashboard')
+		- else
+			li
+				a href="#{dashboard_path}" = _('Dashboard')
+		
+		- if @active_tab == 'publisher'
+			li.last.active
+				a href="#{publishers_path}" = _('Publisher')
+		- else
+			li.last
+				a href="#{publishers_path}" = _('Publisher')
+
+.right
+	ul
+		li.last
+			a href="#" = _('Settings')

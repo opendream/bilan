@@ -1,9 +1,11 @@
 ul
 	- if user_signed_in?
 		li
-			== link_to 'Sign out', destroy_user_session_path
+		  | #{_('Welcome')}, #{current_user.email}
+		li.last
+			== link_to _('Sign out'), destroy_user_session_path
 	- else
 		li
-			== link_to 'Sign in', new_user_session_path
+			== link_to _('Sign in'), new_user_session_path
 		li.last
-			== link_to 'Sign up', new_user_registration_path
+			== link_to _('Sign up'), new_user_registration_path

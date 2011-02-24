@@ -10,7 +10,31 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110214132329) do
+ActiveRecord::Schema.define(:version => 20110223120736) do
+
+  create_table "publishers", :force => true do |t|
+    t.integer  "owner_id"
+    t.string   "name"
+    t.text     "address"
+    t.string   "telephone"
+    t.string   "fax"
+    t.string   "website"
+    t.string   "facebook"
+    t.string   "twitter"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "publishers", ["owner_id"], :name => "index_publishers_on_owner_id"
+
+  create_table "publishers_users", :id => false, :force => true do |t|
+    t.integer "publisher_id"
+    t.integer "user_id"
+  end
+
+  add_index "publishers_users", ["publisher_id", "user_id"], :name => "index_publishers_users_on_publisher_id_and_user_id"
+  add_index "publishers_users", ["publisher_id"], :name => "index_publishers_users_on_publisher_id"
+  add_index "publishers_users", ["user_id"], :name => "index_publishers_users_on_user_id"
 
   create_table "users", :force => true do |t|
     t.string   "email",                               :default => "", :null => false
