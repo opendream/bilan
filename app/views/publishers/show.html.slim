@@ -1,24 +1,33 @@
 h2 = @publisher.name
-p
-	label #{_('Address')}:
-	= @publisher.address
-p
-	label #{_('Telephone')}:
-	= @publisher.telephone
-p
-	label #{_('Fax')}:
-	= @publisher.fax
-p
-	label #{_('Website')}:
-	- unless @publisher.website.blank?
+
+- unless @publisher.address.blank?
+	p
+		label #{_('Address')}:
+		= @publisher.address
+
+- unless @publisher.telephone.blank?
+	p
+		label #{_('Telephone')}:
+		= @publisher.telephone
+
+- unless @publisher.fax.blank?
+	p
+		label #{_('Fax')}:
+		= @publisher.fax
+
+- unless @publisher.website.blank?
+	p
+		label #{_('Website')}:
 		a href=@publisher.website = @publisher.website
-p
-	label #{_('Facebook')}:
-	- unless @publisher.facebook.blank?
+
+- unless @publisher.facebook.blank?
+	p
+		label #{_('Facebook')}:
 		a href=@publisher.facebook = @publisher.facebook
-p
-	label #{_('Twitter')}:
-	- unless @publisher.twitter.blank?
+
+- unless @publisher.twitter.blank?
+	p
+		label #{_('Twitter')}:
 		a href=@publisher.twitter = @publisher.twitter
 
 - content_for :sidebar do

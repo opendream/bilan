@@ -1,7 +1,7 @@
 = form_for(publisher) do |f|
-	= f.error_messages
 	p
 		= f.label :name, _('Publisher name')
+		span.required = "*"
 		br
 		= f.text_field :name
 	p

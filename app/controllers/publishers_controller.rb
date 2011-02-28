@@ -14,8 +14,8 @@ class PublishersController < ApplicationController
     if @publisher.save
       redirect_to @publisher, :notice => _('The publisher has been saved.')
     else
-      #flash[:alert] = _("Can't save the publisher.")
-      redirect_to :action => :new
+      @obj_errors = @publisher.errors
+      render :action => :new
     end
   end
 
@@ -33,8 +33,8 @@ class PublishersController < ApplicationController
     if @publisher.update_attributes(params[:publisher])
       redirect_to @publisher, :notice => _('The publisher has been updated.')
     else
-      flash[:alert] = _("Can't update the publisher.")
-      redirect_to :action => :edit
+      @obj_errors = @publisher.errors
+      render :action => :edit
     end
   end
 

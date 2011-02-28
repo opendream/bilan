@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.4'
+gem 'rails', '3.0.5'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -11,7 +11,6 @@ gem 'slim', require: 'slim/rails'
 gem 'compass', '>= 0.10.6'
 gem 'gettext_i18n_rails'
 gem 'gettext', '>=1.9.3', :require => false, :group => :development
-gem 'dynamic_form'
 
 # Use unicorn as the web server
 # gem 'unicorn'

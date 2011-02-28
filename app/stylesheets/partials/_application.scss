@@ -84,13 +84,27 @@ body {
 
 form {
   input, textarea {
-    font-family: sans-serif; 
+    font-family: sans-serif;
+  }
+  input[type=text], textarea {
+    border: 1px solid #ccc;
+    width: 250px;
+    padding: 5px;
+  }
+  .field_with_errors {
+    input {
+      border: 1px solid red;
+    }
   }
 }
 
 label {
   font-weight: bold;
-  padding-right: 10px;
+  padding-right: 5px;
+}
+
+span.required {
+  color: red;
 }
 
 .container {
@@ -180,6 +194,10 @@ ul.page {
   border: 1px solid green;
 }
 .alert {
-  color: #e66;
+  color: red;
   border: 1px solid #e66;
+  ul {
+    margin: 0;
+    padding-left: 0.8em;
+  }
 }

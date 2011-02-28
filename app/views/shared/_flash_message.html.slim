@@ -1,0 +1,11 @@
+- if flash[:notice]
+	.notice
+		= flash[:notice]
+- elsif flash[:alert]
+	.alert
+		= flash[:alert]
+- elsif @obj_errors && @obj_errors.full_messages.size > 0
+	.alert
+		ul
+			- @obj_errors.full_messages.each do |msg|
+				li = msg

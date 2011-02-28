@@ -29,14 +29,9 @@ html
 				.container
 					.two-cols
 						#content
-							- if flash[:notice]
-								.notice
-									= flash[:notice]
-							- elsif flash[:alert]
-								.alert
-									= flash[:alert]
 							#breadcrumb
 								= breadcrumb
+							== render :partial => 'shared/flash_message'
 							= yield
 						#sidebar
 							= yield :sidebar
