@@ -1,9 +1,23 @@
-h2 = @publisher.name
+h2 = _('Publisher details')
+
+p
+	label #{_('Name')}:
+	= @publisher.name
+
+- unless @publisher.name_en.blank?
+	p
+		label #{_('Name (English)')}:
+		= @publisher.name_en
 
 - unless @publisher.address.blank?
 	p
 		label #{_('Address')}:
 		= @publisher.address
+
+- unless @publisher.address_en.blank?
+	p
+		label #{_('Address (English)')}:
+		= @publisher.address_en
 
 - unless @publisher.telephone.blank?
 	p
@@ -14,6 +28,11 @@ h2 = @publisher.name
 	p
 		label #{_('Fax')}:
 		= @publisher.fax
+
+- unless @publisher.email.blank?
+	p
+		label #{_('Email')}:
+		= @publisher.email
 
 - unless @publisher.website.blank?
 	p
@@ -34,3 +53,5 @@ h2 = @publisher.name
 	ul
 		li
 			a href="#{edit_publisher_path}" = _('Edit publisher')
+		li
+			a href="#{new_publisher_book_path @publisher.id}" = _('Create new book')

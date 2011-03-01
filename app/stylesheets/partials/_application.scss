@@ -86,7 +86,7 @@ form {
   input, textarea {
     font-family: sans-serif;
   }
-  input[type=text], textarea {
+  input[type=text], input[type=password], textarea {
     border: 1px solid #ccc;
     width: 250px;
     padding: 5px;
@@ -171,6 +171,10 @@ span.required {
   #sidebar {
     $sidebar-columns: floor($blueprint-grid-columns / 4);
     @include column($sidebar-columns, true);
+    ul {
+      margin: 0;
+      padding: 0;
+    }
   }
 }
 

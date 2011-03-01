@@ -50,7 +50,10 @@ Bilan::Application.routes.draw do
 
   match 'dashboard' => 'user#dashboard'
 
-  resources :publishers
+  resources :bibliographies
+  resources :publishers do
+    resources :books
+  end
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
