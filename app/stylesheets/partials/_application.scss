@@ -91,6 +91,9 @@ form {
     width: 250px;
     padding: 5px;
   }
+  textarea.large {
+    width: 550px;
+  }
   .field_with_errors {
     input {
       border: 1px solid red;
@@ -98,9 +101,25 @@ form {
   }
 }
 
+fieldset {
+  border: 1px dotted #999;
+  margin: 0 0 1.5em;
+  padding: 0.8em 1em;
+  legend {
+      font: {
+        size: 1.2em;
+        weight: bold;
+      }
+      padding: 0 5px;
+  }
+}
+
 label {
   font-weight: bold;
   padding-right: 5px;
+  &.normal {
+    font-weight: normal;
+  }
 }
 
 span.required {

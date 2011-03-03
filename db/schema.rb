@@ -10,18 +10,55 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110301121228) do
+ActiveRecord::Schema.define(:version => 20110302121135) do
 
-  create_table "books", :force => true do |t|
+  create_table "distributors", :force => true do |t|
+    t.string   "name"
+    t.string   "address"
+    t.string   "telephone"
+    t.string   "fax"
+    t.string   "email"
+    t.string   "website"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "distributors", ["name"], :name => "index_distributors_on_name"
+
+  create_table "presses", :force => true do |t|
+    t.string   "name"
+    t.string   "address"
+    t.string   "telephone"
+    t.string   "fax"
+    t.string   "email"
+    t.string   "website"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "presses", ["name"], :name => "index_presses_on_name"
+
+  create_table "publications", :force => true do |t|
     t.string   "title"
     t.string   "author"
     t.string   "isbn10",                 :limit => 10
     t.string   "isbn13",                 :limit => 13
-    t.string   "cip"
-    t.string   "edition"
+    t.text     "cip"
+    t.string   "edition",                              :default => "1"
+    t.integer  "year"
+    t.integer  "page"
+    t.float    "price"
+    t.integer  "copy"
+    t.integer  "publication_type"
+    t.string   "publication_type_other"
+    t.integer  "title_per_year"
+    t.text     "synopsis"
+    t.boolean  "translated",                           :default => false
+    t.string   "translated_from"
+    t.string   "original_author"
     t.string   "publisher_name"
-    t.string   "publisher_address"
     t.string   "publisher_name_en"
+    t.string   "publisher_address"
     t.string   "publisher_address_en"
     t.string   "publisher_telephone"
     t.string   "publisher_fax"
@@ -33,37 +70,32 @@ ActiveRecord::Schema.define(:version => 20110301121228) do
     t.string   "press_fax"
     t.string   "press_email"
     t.string   "press_website"
-    t.integer  "year"
-    t.integer  "page"
-    t.float    "price"
-    t.integer  "copies",                               :default => 0
-    t.integer  "publication_type"
-    t.string   "publication_type_other"
-    t.string   "distributer_name"
-    t.string   "distributer_address"
-    t.string   "distributer_telephone"
-    t.string   "distributer_fax"
-    t.string   "distributer_email"
-    t.string   "distributer_website"
-    t.integer  "titles_per_year",                      :default => 0
-    t.text     "synopsis"
-    t.boolean  "translated",                           :default => false
-    t.string   "translated_from"
-    t.string   "original_author"
+    t.string   "distributor_name"
+    t.string   "distributor_address"
+    t.string   "distributor_telephone"
+    t.string   "distributor_fax"
+    t.string   "distributor_email"
+    t.string   "distributor_website"
     t.integer  "publisher_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "books", ["isbn10"], :name => "index_books_on_isbn10"
-  add_index "books", ["isbn13"], :name => "index_books_on_isbn13"
-  add_index "books", ["year"], :name => "index_books_on_year"
+  add_index "publications", ["author"], :name => "index_publications_on_author"
+  add_index "publications", ["distributor_name"], :name => "index_publications_on_distributor_name"
+  add_index "publications", ["isbn10"], :name => "index_publications_on_isbn10"
+  add_index "publications", ["isbn13"], :name => "index_publications_on_isbn13"
+  add_index "publications", ["press_name"], :name => "index_publications_on_press_name"
+  add_index "publications", ["publication_type"], :name => "index_publications_on_publication_type"
+  add_index "publications", ["publisher_name"], :name => "index_publications_on_publisher_name"
+  add_index "publications", ["title"], :name => "index_publications_on_title"
+  add_index "publications", ["year"], :name => "index_publications_on_year"
 
   create_table "publishers", :force => true do |t|
     t.integer  "owner_id"
     t.string   "name"
-    t.string   "address"
     t.string   "name_en"
+    t.string   "address"
     t.string   "address_en"
     t.string   "telephone"
     t.string   "fax"

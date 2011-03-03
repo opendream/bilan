@@ -1,0 +1,158 @@
+= form_for(publication, :url => action_url) do |f|
+	p
+		= f.label :title, _('Title')
+		span.required *
+		br
+		= f.text_field :title
+	p
+		= f.label :author, _('Author')
+		span.required *
+		br
+		= f.text_field :author
+	p
+		= f.label :edition, _('Edition')
+		br
+		= f.text_field :edition
+	p
+		= f.label :year, _('Published year')
+		br
+		= f.text_field :year
+	p
+		= f.label :page, _('Page amount')
+		br
+		= f.text_field :page
+	p
+		= f.label :price, _('Price')
+		br
+		= f.text_field :price
+	p
+		= f.label :copy, _('Copy amount')
+		br
+		= f.text_field :copy
+	p
+		= f.label :publication_type, _('Publication type')
+		br
+		= f.text_field :publication_type
+	p
+		= f.label :publication_type_other, _('Publication type: other')
+		br
+		= f.text_field :publication_type_other
+	p
+		= f.label :title_per_year, _('Estimated number of titles per year')
+		br
+		= f.text_field :title_per_year
+	p
+		= f.label :synopsis, _('Synopsis')
+		br
+		= f.text_area :synopsis, :class => 'large'
+	p
+		= f.label :translated, _('Is a translated publication?')
+		br
+		= f.radio_button :translated, :no
+		= f.label :translated_no, _('No'), :class => 'normal'
+		= f.radio_button :translated, :yes
+		= f.label :translated_yes, _('Yes'), :class => 'normal'
+	p
+		= f.label :translated_from, _('Translated from')
+		br
+		= f.text_field :translated_from
+	p
+		= f.label :original_author, _('Original author')
+		br
+		= f.text_field :original_author
+
+	fieldset
+		legend = _('Publisher')
+		p
+			= f.label :publisher_name, _('Name')
+			br
+			= f.text_field :publisher_name
+		p
+			= f.label :publisher_name_en, _('Name (English)')
+			br
+			= f.text_field :publisher_name_en
+		p
+			= f.label :publisher_address, _('Address')
+			br
+			= f.text_area :publisher_address, :size => '30x5'
+		p
+			= f.label :publisher_address_en, _('Address (English)')
+			br
+			= f.text_area :publisher_address_en, :size => '30x5'
+		p
+			= f.label :publisher_telephone, _('Telephone')
+			br
+			= f.text_field :publisher_telephone
+		p
+			= f.label :publisher_fax, _('Fax')
+			br
+			= f.text_field :publisher_fax
+		p
+			= f.label :publisher_email, _('Email')
+			br
+			= f.text_field :publisher_email
+		p
+			= f.label :publisher_website, _('Website')
+			br
+			= f.text_field :publisher_website
+
+	fieldset
+		legend = _('Press')
+		p
+			= f.label :press_name, _('Name')
+			br
+			= f.text_field :press_name
+		p
+			= f.label :press_address, _('Address')
+			br
+			= f.text_area :press_address, :size => '30x5'
+		p
+			= f.label :press_telephone, _('Telephone')
+			br
+			= f.text_field :press_telephone
+		p
+			= f.label :press_fax, _('Fax')
+			br
+			= f.text_field :press_fax
+		p
+			= f.label :press_email, _('Email')
+			br
+			= f.text_field :press_email
+		p
+			= f.label :press_website, _('Website')
+			br
+			= f.text_field :press_website
+
+	fieldset
+		legend = _('Distributor')
+		p
+			= f.label :distributor_name, _('Name')
+			br
+			= f.text_field :distributor_name
+		p
+			= f.label :distributor_address, _('Address')
+			br
+			= f.text_area :distributor_address, :size => '30x5'
+		p
+			= f.label :distributor_telephone, _('Telephone')
+			br
+			= f.text_field :distributor_telephone
+		p
+			= f.label :distributor_fax, _('Fax')
+			br
+			= f.text_field :distributor_fax
+		p
+			= f.label :distributor_email, _('Email')
+			br
+			= f.text_field :distributor_email
+		p
+			= f.label :distributor_website, _('Website')
+			br
+			= f.text_field :distributor_website
+	p
+		= f.submit
+		= ' ' + _('or') + ' '
+		- if publication.id.nil?
+			a href="#{publisher_path publisher.id}" = _('Cancel')
+		- else
+			a href="#{publisher_publication_path publisher.id, publication.id}" = _('Cancel')

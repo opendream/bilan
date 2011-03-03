@@ -1,0 +1,121 @@
+h2 = _('Publication details')
+
+p
+	label #{_('Title')}:
+	= @publication.title
+p
+	label #{_('Author')}:
+	= @publication.author
+p
+	label #{_('ISBN')}:
+p
+	label #{_('CIP')}:
+p
+	label #{_('Edition')}:
+	= @publication.edition
+p
+	label #{_('Published year')}:
+	= @publication.year.to_s
+p
+	label #{_('Page amount')}:
+	= @publication.page.to_s
+p
+	label #{_('Price')}:
+	= @publication.price
+p
+	label #{_('Copy amount')}:
+	= @publication.copy.to_s
+p
+	label #{_('Publication type')}:
+	= @publication.publication_type.to_s
+p
+	label #{_('Publication type: other')}:
+	= @publication.publication_type_other
+p
+	label #{_('Estimated number of titles per year')}:
+	= @publication.title_per_year.to_s
+p
+	label #{_('Synopsis')}:
+	= @publication.synopsis
+
+- if @publication.translated
+	p
+		label #{_('Translated from')}:
+		= @publication.translated_from
+	p
+		label #{_('Original author')}:
+		= @publication.original_author
+
+fieldset
+	legend = _('Publisher')
+	p
+		label #{_('Name')}:
+		= @publication.publisher_name
+	p
+		label #{_('Name (English)')}:
+		= @publication.publisher_name_en
+	p
+		label #{_('Address')}:
+		= @publication.publisher_address
+	p
+		label #{_('Address (English)')}:
+		= @publication.publisher_address_en
+	p
+		label #{_('Telephone')}:
+		= @publication.publisher_telephone
+	p
+		label #{_('Fax')}:
+		= @publication.publisher_fax
+	p
+		label #{_('Email')}:
+		= @publication.publisher_email
+	p
+		label #{_('Website')}:
+		= @publication.publisher_website
+
+fieldset
+	legend = _('Press')
+	p
+		label #{_('Name')}:
+		= @publication.press_name
+	p
+		label #{_('Address')}:
+		= @publication.press_address
+	p
+		label #{_('Telephone')}:
+		= @publication.press_telephone
+	p
+		label #{_('Fax')}:
+		= @publication.press_fax
+	p
+		label #{_('Email')}:
+		= @publication.press_email
+	p
+		label #{_('Website')}:
+		= @publication.press_website
+
+fieldset
+	legend = _('Distributer')
+	p
+		label #{_('Name')}:
+		= @publication.distributor_name
+	p
+		label #{_('Address')}:
+		= @publication.distributor_address
+	p
+		label #{_('Telephone')}:
+		= @publication.distributor_telephone
+	p
+		label #{_('Fax')}:
+		= @publication.distributor_fax
+	p
+		label #{_('Email')}:
+		= @publication.distributor_email
+	p
+		label #{_('Website')}:
+		= @publication.distributor_website
+
+- content_for :sidebar do
+	ul
+		li
+			a href="#{edit_publisher_publication_path}" = _('Edit publication')
