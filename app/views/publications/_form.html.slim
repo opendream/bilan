@@ -32,8 +32,8 @@
 	p
 		= f.label :publication_type, _('Publication type')
 		br
-		= f.text_field :publication_type
-	p
+		= f.select :publication_type, publication.get_types
+	p.publication_type_other style='display:none;'
 		= f.label :publication_type_other, _('Publication type: other')
 		br
 		= f.text_field :publication_type_other
@@ -44,24 +44,24 @@
 	p
 		= f.label :synopsis, _('Synopsis')
 		br
-		= f.text_area :synopsis, :class => 'large'
+		= f.text_area :synopsis, :class => 'resizable'
 	p
 		= f.label :translated, _('Is a translated publication?')
 		br
-		= f.radio_button :translated, :no
+		= f.radio_button :translated, :false
 		= f.label :translated_no, _('No'), :class => 'normal'
-		= f.radio_button :translated, :yes
+		= f.radio_button :translated, :true
 		= f.label :translated_yes, _('Yes'), :class => 'normal'
-	p
+	p.translated style='display:none;'
 		= f.label :translated_from, _('Translated from')
 		br
 		= f.text_field :translated_from
-	p
+	p.translated style='display:none;'
 		= f.label :original_author, _('Original author')
 		br
 		= f.text_field :original_author
 
-	fieldset
+	fieldset.collapsible
 		legend = _('Publisher')
 		p
 			= f.label :publisher_name, _('Name')
@@ -96,7 +96,7 @@
 			br
 			= f.text_field :publisher_website
 
-	fieldset
+	fieldset.collapsible
 		legend = _('Press')
 		p
 			= f.label :press_name, _('Name')
@@ -123,7 +123,7 @@
 			br
 			= f.text_field :press_website
 
-	fieldset
+	fieldset.collapsible
 		legend = _('Distributor')
 		p
 			= f.label :distributor_name, _('Name')

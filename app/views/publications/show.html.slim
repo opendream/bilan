@@ -15,16 +15,16 @@ p
 	= @publication.edition
 p
 	label #{_('Published year')}:
-	= @publication.year.to_s
+	= @publication.year
 p
 	label #{_('Page amount')}:
-	= @publication.page.to_s
+	= @publication.page
 p
 	label #{_('Price')}:
 	= @publication.price
 p
 	label #{_('Copy amount')}:
-	= @publication.copy.to_s
+	= @publication.copy
 p
 	label #{_('Publication type')}:
 	= @publication.publication_type.to_s
@@ -33,7 +33,7 @@ p
 	= @publication.publication_type_other
 p
 	label #{_('Estimated number of titles per year')}:
-	= @publication.title_per_year.to_s
+	= @publication.title_per_year
 p
 	label #{_('Synopsis')}:
 	= @publication.synopsis
@@ -118,4 +118,6 @@ fieldset
 - content_for :sidebar do
 	ul
 		li
-			a href="#{edit_publisher_publication_path}" = _('Edit publication')
+			a href="#{edit_publisher_publication_path}" = _('Edit')
+		li
+			a href="#" = _('Print')

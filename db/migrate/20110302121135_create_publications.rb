@@ -7,13 +7,13 @@ class CreatePublications < ActiveRecord::Migration
       t.string :isbn13, :limit => 13
       t.text :cip
       t.string :edition, :default => '1'
-      t.integer :year
-      t.integer :page
+      t.string :year
+      t.string :page
       t.float :price
-      t.integer :copy
+      t.string :copy
       t.integer :publication_type
       t.string  :publication_type_other
-      t.integer :title_per_year
+      t.string :title_per_year
       t.text :synopsis
       t.boolean :translated, :default => false
       t.string  :translated_from
