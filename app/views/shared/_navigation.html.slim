@@ -1,4 +1,4 @@
-.left
+//.left
 	ul
 		- if @active_tab == 'dashboard'
 			li.active
@@ -14,7 +14,14 @@
 			li.last
 				a href="#{publishers_path}" = _('Publisher')
 
+//.right
+	ul
+		li.last
+			a href="#" = _('Settings')
+
 .right
 	ul
+		li
+			a href="#{publishers_path}" = _('Publisher')
 		li.last
 			a href="#" = _('Settings')

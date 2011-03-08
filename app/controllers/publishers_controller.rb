@@ -2,7 +2,6 @@ class PublishersController < ApplicationController
   
   before_filter :authenticate_user!
   before_filter :get_publisher, :only => [:show, :edit, :update]
-  before_filter :set_active_tab
 
   def index
     @publishers = Publisher.where(:owner_id => current_user).order('created_at')
@@ -27,6 +26,8 @@ class PublishersController < ApplicationController
   end
 
   def show
+    #@active_breadcrumbs.push({'text' => 'publisher', 'link' => publishers_path})
+    #@active_breadcrumbs.push('text' => @publisher.name)
   end
 
   def update
@@ -41,14 +42,10 @@ class PublishersController < ApplicationController
   def destroy
   end
 
-  private
+  private #--------------------------------------------------------------------
 
   def get_publisher
     @publisher = Publisher.find(params[:id])  
-  end
-
-  def set_active_tab
-    @active_tab = 'publisher'
   end
 
 end

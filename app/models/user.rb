@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  has_one :own_publisher, :class_name => 'Publisher', :foreign_key => 'owner_id'
+  has_many :own_publishers, :class_name => 'Publisher', :foreign_key => 'owner_id'
   has_and_belongs_to_many :publishers
 
   # Include default devise modules. Others available are:

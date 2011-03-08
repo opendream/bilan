@@ -50,9 +50,18 @@ Bilan::Application.routes.draw do
 
   match 'dashboard' => 'user#dashboard'
 
+  namespace 'admin' do
+    resource :posts
+  end
+
   resources :bibliographies
   resources :publishers do
-    resources :publications
+    resources :publications do
+      member do
+        get 'export_isbn'
+        get 'export_cip'
+      end
+    end
   end
   resources :presses
   resources :distributors

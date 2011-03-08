@@ -27,10 +27,10 @@ p
 	= @publication.copy
 p
 	label #{_('Publication type')}:
-	= @publication.publication_type.to_s
-p
-	label #{_('Publication type: other')}:
-	= @publication.publication_type_other
+	- if @publication.publication_type == 9
+		= @publication.publication_type_other
+	- else
+		= @publication.get_publication_type_name
 p
 	label #{_('Estimated number of titles per year')}:
 	= @publication.title_per_year
@@ -46,7 +46,7 @@ p
 		label #{_('Original author')}:
 		= @publication.original_author
 
-fieldset
+fieldset.collapsible
 	legend = _('Publisher')
 	p
 		label #{_('Name')}:
@@ -73,7 +73,7 @@ fieldset
 		label #{_('Website')}:
 		= @publication.publisher_website
 
-fieldset
+fieldset.collapsible
 	legend = _('Press')
 	p
 		label #{_('Name')}:
@@ -94,7 +94,7 @@ fieldset
 		label #{_('Website')}:
 		= @publication.press_website
 
-fieldset
+fieldset.collapsible
 	legend = _('Distributer')
 	p
 		label #{_('Name')}:
@@ -120,4 +120,6 @@ fieldset
 		li
 			a href="#{edit_publisher_publication_path}" = _('Edit')
 		li
-			a href="#" = _('Print')
+			a href="#{export_isbn_publisher_publication_path @publisher.id, @publication.id}" = _('Export ISBN requested form')
+		li
+			a href="#{export_cip_publisher_publication_path @publisher.id, @publication.id}" = _('Export CIP requested form')
