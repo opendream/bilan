@@ -25,7 +25,7 @@ jQuery.fn.collapse = function(options) {
 	
 			jQuery(this).removeClass('collapsed');
 	
-			obj.children().not('legend').toggle("slow", function() {
+			obj.children().not('legend').toggle(function() {
 			 
 				 if (jQuery(this).is(":visible"))
 					obj.find("legend:first").addClass('collapsible');
