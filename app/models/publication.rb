@@ -18,4 +18,8 @@ class Publication < ActiveRecord::Base
     get_types.each { |i| types.update({i[1] => i[0]}) }
     types.fetch(self.publication_type)
   end
+
+  def name
+    return self.title
+  end
 end

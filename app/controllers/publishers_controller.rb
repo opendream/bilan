@@ -26,8 +26,6 @@ class PublishersController < ApplicationController
   end
 
   def show
-    #@active_breadcrumbs.push({'text' => 'publisher', 'link' => publishers_path})
-    #@active_breadcrumbs.push('text' => @publisher.name)
   end
 
   def update
