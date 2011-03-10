@@ -5,6 +5,7 @@ class PublicationsController < ApplicationController
   before_filter :get_publisher, :only => [:show, :new, :create, :edit, :update]
 
   def index
+    @publications = Publication.where(:publisher_id => params[:publisher_id]).order(:created_at)
   end
 
   def create
@@ -54,6 +55,7 @@ class PublicationsController < ApplicationController
 
   def get_publication
     @publication = Publication.find(params[:id])
+    @publication.isbn = @publication.get_isbn
   end
 
   def get_publisher

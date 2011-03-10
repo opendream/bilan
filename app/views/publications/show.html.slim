@@ -8,8 +8,11 @@ p
 	= @publication.author
 p
 	label #{_('ISBN')}:
+	= @publication.get_isbn
 p
 	label #{_('CIP')}:
+	br
+	== BlueCloth.new(@publication.cip).to_html
 p
 	label #{_('Edition')}:
 	= @publication.edition
@@ -36,7 +39,8 @@ p
 	= @publication.title_per_year
 p
 	label #{_('Synopsis')}:
-	= @publication.synopsis
+	br
+	== BlueCloth.new(@publication.synopsis).to_html
 
 - if @publication.translated
 	p

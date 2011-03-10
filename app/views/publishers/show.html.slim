@@ -49,16 +49,16 @@ p
 		label #{_('Twitter')}:
 		a href=@publisher.twitter = @publisher.twitter
 	
-hr
-
-h3 = _('Publications')
-- if @publisher.publications.size > 0
-	ul
-	- @publisher.publications.each do |p|
-		li
-			a href="#{publisher_publication_path @publisher.id, p.id}" = "%s (%s)" % [p.title, p.author]
-- else
-	= _('You have no publication.')
+.child-items
+	h3 = _('Publications')
+	- if @publisher.publications.size > 0
+		ul
+			- @publisher.publications.order(:created_at).each do |p|
+				li
+					a href="#{publisher_publication_path @publisher.id, p.id}" = p.title
+					= " (%s)" % p.author
+	- else
+		= _('You have no publication.')
 
 - content_for :sidebar do
 	ul

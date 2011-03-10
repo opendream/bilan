@@ -9,6 +9,17 @@
 		span.required *
 		br
 		= f.text_field :author
+
+	- unless publication.id.nil?
+		p
+			= f.label :isbn, _('ISBN')
+			br
+			= f.text_field :isbn
+		p
+			= f.label :cip, _('CIP')
+			br
+			= f.text_area :cip, :class => 'resizable'
+
 	p
 		= f.label :edition, _('Edition')
 		br

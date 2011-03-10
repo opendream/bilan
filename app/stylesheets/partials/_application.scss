@@ -106,7 +106,7 @@ form {
     display: block;
     textarea.resizable {
       width: 98%;
-      height: 50px;
+      height: 80px;
       display: block;
       margin-bottom: 0;
     }
@@ -233,6 +233,10 @@ span.required {
   #content {
     $content-columns: ceil(3 * $blueprint-grid-columns / 4);
     @include column($content-columns);
+    .child-items {
+      border-top: 1px solid #999;
+      padding-top: 20px;
+    }
   }
   #sidebar {
     $sidebar-columns: floor($blueprint-grid-columns / 4);
