@@ -12,6 +12,7 @@ gem 'compass', '>= 0.10.6'
 gem 'gettext_i18n_rails'
 gem 'gettext', '>=1.9.3', :require => false, :group => :development
 gem 'prawn'
+gem 'bluecloth'
 
 # Use unicorn as the web server
 # gem 'unicorn'

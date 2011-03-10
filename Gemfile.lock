@@ -30,6 +30,7 @@ GEM
     activesupport (3.0.5)
     arel (2.0.8)
     bcrypt-ruby (2.1.4)
+    bluecloth (2.0.11)
     builder (2.1.2)
     compass (0.10.6)
       haml (>= 3.0.4)
@@ -96,6 +97,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  bluecloth
   compass (>= 0.10.6)
   devise
   gettext (>= 1.9.3)
