@@ -48,7 +48,7 @@ Bilan::Application.routes.draw do
   #     resources :products
   #   end
 
-  match 'dashboard' => 'user#dashboard'
+  match 'dashboard' => 'user#dashboard', :as => 'user_root'
 
   namespace 'admin' do
     resource :posts
