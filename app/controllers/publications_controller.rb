@@ -3,7 +3,6 @@ class PublicationsController < ApplicationController
   before_filter :authenticate_user!
   before_filter :get_publication, :only => [:show, :edit, :update, :export_isbn, :export_cip]
   before_filter :get_publisher, :only => [:show, :new, :create, :edit, :update]
-  before_filter :set_active_tab
 
   def index
   end
@@ -59,10 +58,6 @@ class PublicationsController < ApplicationController
 
   def get_publisher
     @publisher = Publisher.find(params[:publisher_id])
-  end
-
-  def set_active_tab
-    @active_tab = 'publisher'
   end
 
   def export_pdf(form_type, publication)

@@ -2,7 +2,7 @@ module ApplicationHelper
   def breadcrumbs
     separator = " &raquo; "
     breadcrumbs = []
-    breadcrumbs.push(link_to(_('Dashboard'), dashboard_path))
+    breadcrumbs.push(link_to(_('Dashboard'), user_root_path))
 
     i18n_words = {
       'publishers' => _('Publishers'),
@@ -16,7 +16,7 @@ module ApplicationHelper
     elements.delete('dashboard') # exclude 'dashboard'
     for i in 0...elements.size
       links += elements[i] + '/'
-      if i % 2 == 0 # it may be a Model
+      if i % 2 == 0 # as RESTful, it may be a model name
         if elements[i] == elements.last
           item = i18n_words.fetch(elements[i]) rescue elements[i].camelize
         else

@@ -165,14 +165,20 @@ span.required {
 }
 
 #user-ribbon {
-  @include column(8, true);
-  @include prepend($blueprint-grid-columns - 8);
   @include inline-list;
   @include link($link-light-color);
   color: $text-light-color;
   padding-top: 7px;
   padding-bottom: 7px;
-  text-align: right;
+  display: block;
+  overflow: hidden;
+  #logo {
+    @include column(3, true);
+  }
+  #user {
+    @include column($blueprint-grid-columns - 3, true);
+    text-align: right;
+  }
 }
 
 #header-wrapper {
