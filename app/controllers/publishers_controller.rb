@@ -11,7 +11,7 @@ class PublishersController < ApplicationController
     @publisher = Publisher.new(params[:publisher])
     @publisher.owner = current_user
     if @publisher.save
-      redirect_to @publisher, :notice => _('The publisher has been saved.')
+      redirect_to @publisher, :notice => _('The publisher has been created.')
     else
       @obj_errors = @publisher.errors
       render :action => :new

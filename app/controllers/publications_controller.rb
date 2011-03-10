@@ -13,7 +13,7 @@ class PublicationsController < ApplicationController
     @publication.publisher = params[:publisher_id]
     if @publication.save
       redirect_to publisher_publication_url(@publisher, @publication),
-        :notice => _('The publication has been saved.')
+        :notice => _('The publication has been created.')
     else
       @obj_errors = @publication.errors
       render :action => :new
