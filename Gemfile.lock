@@ -46,6 +46,8 @@ GEM
       fast_gettext
     haml (3.0.25)
     i18n (0.5.0)
+    kaminari (0.10.4)
+      rails (>= 3.0.0)
     locale (2.0.5)
     mail (2.2.15)
       activesupport (>= 2.3.6)
@@ -53,15 +55,9 @@ GEM
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     mime-types (1.16)
+    pdfkit (0.5.0)
     pg (0.10.1)
     polyglot (0.3.1)
-    prawn (0.8.4)
-      prawn-core (>= 0.8.4, < 0.9)
-      prawn-layout (>= 0.8.4, < 0.9)
-      prawn-security (>= 0.8.4, < 0.9)
-    prawn-core (0.8.4)
-    prawn-layout (0.8.4)
-    prawn-security (0.8.4)
     rack (1.2.1)
     rack-mount (0.6.13)
       rack (>= 1.0.0)
@@ -102,7 +98,8 @@ DEPENDENCIES
   devise
   gettext (>= 1.9.3)
   gettext_i18n_rails
+  kaminari
+  pdfkit
   pg
-  prawn
   rails (= 3.0.5)
   slim
