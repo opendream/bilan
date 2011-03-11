@@ -44,11 +44,11 @@ class PublicationsController < ApplicationController
   end
 
   def export_isbn
-    export_pdf('isbn', @publication) 
+    build_pdf('isbn', @publication) 
   end
 
   def export_cip
-    export_pdf('cip', @publication) 
+    build_pdf('cip', @publication) 
   end
 
   private #--------------------------------------------------------------------
@@ -62,26 +62,22 @@ class PublicationsController < ApplicationController
     @publisher = Publisher.find(params[:publisher_id])
   end
 
-  def export_pdf(form_type, publication)
+  def build_pdf(form_type, publication)
     output_file = '/tmp/bilan/%s/%s/%s_requested_form.pdf' %
-      [publication.publisher.id, publication.id, form_type]
-    text = build_text(publication)
-    build_pdf(output_file, text)
-    send_file(output_file, :type => 'application/pdf', :x_sendfile => true)
-  end
+        [publication.publisher.id, publication.id, form_type]
+    template = 'app/views/publications/%s_form_template.html.slim' % form_type
 
-  def build_text(obj)
-    obj.title + '\n' + obj.author
-  end
+    text = Slim::Template.new(template).render(publication)
 
-  def build_pdf(output_file, text)
-    unless File.exist?(File.dirname(output_file))
-      FileUtils.mkdir_p(File.dirname(output_file))
-    end
-    pdf = Prawn::Document.new
-    pdf.font('public/fonts/thsarabun.ttf')
-    pdf.text(text)
-    pdf.render_file(output_file)
+    abs_dir = File.dirname(output_file)
+    FileUtils.mkdir_p(abs_dir) unless Dir.exist?(abs_dir)
+
+    pdf = PDFKit.new(text)
+    pdf.stylesheets << 'public/stylesheets/compiled/pdf.css'
+    pdf.to_file(output_file)
+
+    send_file(output_file, :type => 'application/pdf')
+    return # to avoid double render call
   end
 
 end
