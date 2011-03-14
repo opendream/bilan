@@ -3,6 +3,68 @@ html
 	head
 		meta http-equiv="Content-Type" content="text/html; charset=utf-8"
 		title = "ISBN requested form"
-
 	body
-		ISBN
+		#container
+			ul
+				li#isbn
+					.w
+						.k
+							= 'ISBN'
+						.v
+							| &nbsp;
+				li#header
+					= _('International Standard Book Number (ISBN) Request Form')
+					br
+					= 'International Standard Book Number (ISBN) Request Form'
+				li
+					ol
+						li
+							.k
+								= _('Author') + ' (Author)' + ': '
+							.v
+								= author
+						li
+							.k
+								= _('Title') + ' (Title)' + ': '
+							.v
+								= title
+						li
+							.k
+								= _('Edition') + ' (Edition)' + ': '
+							.v
+								= edition
+						li
+							.k
+								= _("Publisher's name and address") + " (Publisher's name and address)"
+							.clear
+							.k
+								= _('Thai') + ' (Thai)' + ': '
+							.v
+								= publisher_name
+								= ' '
+								= publisher_address
+							.clear
+							.k
+								= _('English') + ' (English)' + ': '
+							.v
+								= publisher_name_en
+								= ' '
+								= publisher_address_en
+							.clear
+							.inline
+								- unless publisher_telephone.blank?
+									span
+										= 'Tel' + ': '
+										= publisher_telephone
+								- unless publisher_fax.blank?
+									span
+										= 'Fax' + ': '
+										= publisher_fax
+								- unless publisher_email.blank?
+									span
+										= 'E-mail' + ': '
+										= publisher_email
+								- unless publisher_website.blank?
+									span
+										= 'Website' + ': '
+										= publisher_website

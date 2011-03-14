@@ -72,7 +72,7 @@ class PublicationsController < ApplicationController
     abs_dir = File.dirname(output_file)
     FileUtils.mkdir_p(abs_dir) unless Dir.exist?(abs_dir)
 
-    pdf = PDFKit.new(text)
+    pdf = PDFKit.new(text, :page_size => 'A4')
     pdf.stylesheets << 'public/stylesheets/compiled/pdf.css'
     pdf.to_file(output_file)
 
