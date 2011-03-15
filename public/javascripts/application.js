@@ -40,4 +40,17 @@ $(document).ready(function() {
             $('#publication_translated_from').focus();
         });
     });
+
+    $('#link_edit_publisher').fancybox({
+        overlayShow: true,
+        hideOnOverlayClick: false,
+        hideOnContentClick: false,
+        enableEscapeButton: true,
+        showCloseButton: true,
+        href: '#form_edit_publisher'
+    });
+
+    $('.close').click(function() {
+        $.fancybox.close();
+    });
 });

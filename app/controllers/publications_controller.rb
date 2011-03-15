@@ -22,6 +22,14 @@ class PublicationsController < ApplicationController
 
   def new
     @publication = Publication.new
+    @publication.publisher_name = @publisher.name
+    @publication.publisher_name_en = @publisher.name_en
+    @publication.publisher_address = @publisher.address
+    @publication.publisher_address_en = @publisher.address_en
+    @publication.publisher_telephone = @publisher.telephone
+    @publication.publisher_fax = @publisher.fax
+    @publication.publisher_email = @publisher.email
+    @publication.publisher_website = @publisher.website
   end
 
   def edit

@@ -270,6 +270,13 @@ ul.page {
   }
 }
 
+.tip {
+  @include round(3px);
+  @include link(#f33);
+  background-color: #ffc;
+  color: lighten($text-color, 15%);
+  padding: 10px;
+}
 .notice, .alert {
   padding: 20px;
   margin-bottom: 15px;
@@ -285,4 +292,16 @@ ul.page {
     margin: 0;
     padding-left: 0.8em;
   }
+}
+
+// ----------------------------------------------------------------------------
+
+.hide {
+  display: none;
+}
+
+.lightbox {
+  display: none;
+  background-color: $content-bgcolor;
+  padding: 30px;
 }

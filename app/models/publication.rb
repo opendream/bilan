@@ -7,7 +7,7 @@ class Publication < ActiveRecord::Base
 
   # Filters -------------------------------------------------------------------
 
-  def before_update
+  def self.before_update
     if self.isbn.size == 13
       self.isbn13 = self.isbn
       self.isbn10 = nil

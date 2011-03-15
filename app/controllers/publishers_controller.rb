@@ -30,10 +30,16 @@ class PublishersController < ApplicationController
 
   def update
     if @publisher.update_attributes(params[:publisher])
-      redirect_to @publisher, :notice => _('The publisher has been updated.')
+      respond_to do |format|
+        format.html { redirect_to @publisher, :notice => _('The publisher has been updated.') }
+        format.js
+      end
     else
       @obj_errors = @publisher.errors
-      render :action => :edit
+      respond_to do |format|
+        format.html { render :action => :edit }
+        format.js
+      end
     end
   end
 

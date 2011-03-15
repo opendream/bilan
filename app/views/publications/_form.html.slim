@@ -74,38 +74,41 @@
 
 	fieldset.collapsible
 		legend = _('Publisher')
+		p.tip
+			= _('The publisher form below is readonly. If you want to edit the information, ')
+			= link_to(_('click here'), 'javascript:;', :id => 'link_edit_publisher')
 		p
 			= f.label :publisher_name, _('Name')
 			br
-			= f.text_field :publisher_name
+			= f.text_field :publisher_name, :readonly => true
 		p
 			= f.label :publisher_name_en, _('Name (English)')
 			br
-			= f.text_field :publisher_name_en
+			= f.text_field :publisher_name_en, :readonly => true
 		p
 			= f.label :publisher_address, _('Address')
 			br
-			= f.text_area :publisher_address, :size => '30x5'
+			= f.text_area :publisher_address, :readonly => true, :size => '30x5'
 		p
 			= f.label :publisher_address_en, _('Address (English)')
 			br
-			= f.text_area :publisher_address_en, :size => '30x5'
+			= f.text_area :publisher_address_en, :readonly => true, :size => '30x5'
 		p
 			= f.label :publisher_telephone, _('Telephone')
 			br
-			= f.text_field :publisher_telephone
+			= f.text_field :publisher_telephone, :readonly => true
 		p
 			= f.label :publisher_fax, _('Fax')
 			br
-			= f.text_field :publisher_fax
+			= f.text_field :publisher_fax, :readonly => true
 		p
 			= f.label :publisher_email, _('Email')
 			br
-			= f.text_field :publisher_email
+			= f.text_field :publisher_email, :readonly => true
 		p
 			= f.label :publisher_website, _('Website')
 			br
-			= f.text_field :publisher_website
+			= f.text_field :publisher_website, :readonly => true
 
 	fieldset.collapsible
 		legend = _('Press')
@@ -164,6 +167,48 @@
 		= f.submit
 		= ' ' + _('or') + ' '
 		- if publication.id.nil?
-			a href="#{publisher_path publisher.id}" = _('Cancel')
+			= link_to(_('Cancel'), publisher_path(publisher.id))
 		- else
-			a href="#{publisher_publication_path publisher.id, publication.id}" = _('Cancel')
+			= link_to(_('Cancel'), publisher_publication_path(publisher.id))
+
+.lightbox
+	#form_edit_publisher
+		= form_for(@publisher, :remote => true) do |f|
+			h3 = _('Edit publisher')
+			p#lightbox_message.hide.alert
+			p
+				= f.label :name, _('Name')
+				br
+				= f.text_field :name
+			p
+				= f.label :name_en, _('Name (English)')
+				br
+				= f.text_field :name_en
+			p
+				= f.label :address, _('Address')
+				br
+				= f.text_area :address, :size => '30x5'
+			p
+				= f.label :address_en, _('Address (English)')
+				br
+				= f.text_area :address_en, :size => '30x5'
+			p
+				= f.label :telephone, _('Telephone')
+				br
+				= f.text_field :telephone
+			p
+				= f.label :fax, _('Fax')
+				br
+				= f.text_field :fax
+			p
+				= f.label :email, _('Email')
+				br
+				= f.text_field :email
+			p
+				= f.label :website, _('Website')
+				br
+				= f.text_field :website
+			p
+				= f.submit
+				= ' ' + _('or') + ' '
+				= link_to(_('Cancel'), 'javascript:;', :class => 'close')

@@ -1,0 +1,14 @@
+<% if @publisher.errors.any? -%>
+	$('#lightbox_message').show();
+	$('#lightbox_message').html('<%= escape_javascript(@obj_errors.full_messages[0]) %>');
+<% else -%>
+	$('#publication_publisher_name').val('<%= h(@publisher.name) %>');
+	$('#publication_publisher_name_en').val('<%= h(@publisher.name_en) %>');
+	$('#publication_publisher_address').val('<%= h(@publisher.address) %>');
+	$('#publication_publisher_address_en').val('<%= h(@publisher.address_en) %>');
+	$('#publication_publisher_telephone').val('<%= h(@publisher.telephone) %>');
+	$('#publication_publisher_fax').val('<%= h(@publisher.fax) %>');
+	$('#publication_publisher_email').val('<%= h(@publisher.email) %>');
+	$('#publication_publisher_website').val('<%= h(@publisher.website) %>');
+	$.fancybox.close();
+<% end -%>
