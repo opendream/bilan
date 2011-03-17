@@ -1,20 +1,48 @@
 class Publication < ActiveRecord::Base
   belongs_to :publisher
 
+  before_update :save_isbn
+  after_save :save_press, :save_distributor
+
   validates_presence_of :title, :author
 
   attr_accessor :isbn
 
   # Filters -------------------------------------------------------------------
 
-  def self.before_update
+  def save_isbn
     if self.isbn.size == 13
       self.isbn13 = self.isbn
       self.isbn10 = nil
     elsif self.isbn.size == 10
       self.isbn10 = self.isbn
       self.isbn13 = nil
+    else
+      self.isbn10 = nil
+      self.isbn13 = nil
     end
+  end
+
+  def save_press
+    Press.new(
+      :name => self.press_name,
+      :address => self.press_address,
+      :telephone => self.press_telephone,
+      :fax => self.press_fax,
+      :email => self.press_email,
+      :website => self.press_website
+    ).save
+  end
+  
+  def save_distributor
+    Distributor.new(
+      :name => self.distributor_name,
+      :address => self.distributor_address,
+      :telephone => self.distributor_telephone,
+      :fax => self.distributor_fax,
+      :email => self.distributor_email,
+      :website => self.distributor_website
+    ).save
   end
 
   # Instance methods ----------------------------------------------------------
