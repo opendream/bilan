@@ -1,5 +1,8 @@
 class PublicationsController < ApplicationController
 
+  autocomplete :press, :name
+  autocomplete :distributor, :name
+
   before_filter :authenticate_user!
   before_filter :get_publication, :only => [:show, :edit, :update, :export_isbn, :export_cip]
   before_filter :get_publisher, :only => [:show, :new, :create, :edit, :update]

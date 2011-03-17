@@ -115,7 +115,7 @@
 		p
 			= f.label :press_name, _('Name')
 			br
-			= f.text_field :press_name
+			= f.autocomplete_field :press_name, autocomplete_press_name_publisher_publications_path
 		p
 			= f.label :press_address, _('Address')
 			br
@@ -142,7 +142,7 @@
 		p
 			= f.label :distributor_name, _('Name')
 			br
-			= f.text_field :distributor_name
+			= f.autocomplete_field :distributor_name, autocomplete_distributor_name_publisher_publications_path
 		p
 			= f.label :distributor_address, _('Address')
 			br

@@ -19,6 +19,10 @@ $(document).ready(function() {
 
     // ACTION EVENTS -----------------------------------------------------------
 
+    $('.close').click(function() {
+        $.fancybox.close();
+    });
+
     $('select#publication_publication_type').change(function() {
         if ($(this).val() == 9) {
             $('p.publication_type_other').show('normal');
@@ -48,9 +52,5 @@ $(document).ready(function() {
         enableEscapeButton: true,
         showCloseButton: true,
         href: '#form_edit_publisher'
-    });
-
-    $('.close').click(function() {
-        $.fancybox.close();
     });
 });

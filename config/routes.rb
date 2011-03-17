@@ -61,6 +61,10 @@ Bilan::Application.routes.draw do
         get 'export_isbn'
         get 'export_cip'
       end
+      collection do
+        get 'autocomplete_press_name'
+        get 'autocomplete_distributor_name'
+      end
     end
   end
   resources :presses
