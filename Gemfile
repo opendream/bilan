@@ -13,6 +13,7 @@ gem 'gettext_i18n_rails'
 gem 'kaminari'
 gem 'pdfkit'
 gem 'pg'
+gem 'rails3-jquery-autocomplete'
 gem 'slim', require: 'slim/rails'
 
 # Use unicorn as the web server
