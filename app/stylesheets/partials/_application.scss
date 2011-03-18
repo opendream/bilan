@@ -97,6 +97,10 @@ form {
     width: 250px;
     padding: 5px;
   }
+  input[readonly=readonly], textarea[readonly=readonly] {
+    background-color: #eee;
+    color: lighten($text-dark-color, 25%);
+  }
   .field_with_errors {
     input {
       border: 1px solid red;
@@ -296,12 +300,6 @@ ul.page {
 
 // ----------------------------------------------------------------------------
 
-.hide {
+.hidden {
   display: none;
-}
-
-.lightbox {
-  display: none;
-  background-color: $content-bgcolor;
-  padding: 30px;
 }

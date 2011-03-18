@@ -112,6 +112,7 @@
 
 	fieldset.collapsible
 		legend = _('Press')
+		= hidden_field_tag :press_remote_find_by_name, remote_find_by_name_presses_path
 		p
 			= f.label :press_name, _('Name')
 			br
@@ -136,9 +137,12 @@
 			= f.label :press_website, _('Website')
 			br
 			= f.text_field :press_website
+		p
+			input type="button" value="#{_('Clear Press')}" onclick="javascript:clearform('press');"
 
 	fieldset.collapsible
 		legend = _('Distributor')
+		= hidden_field_tag :distributor_remote_find_by_name, remote_find_by_name_distributors_path
 		p
 			= f.label :distributor_name, _('Name')
 			br
@@ -163,6 +167,8 @@
 			= f.label :distributor_website, _('Website')
 			br
 			= f.text_field :distributor_website
+		p
+			input type="button" value="#{_('Clear Distributor')}" onclick="javascript:clearform('distributor');"
 	p
 		= f.submit
 		= ' ' + _('or') + ' '
@@ -171,7 +177,7 @@
 		- else
 			= link_to(_('Cancel'), publisher_publication_path(publisher.id))
 
-.lightbox
+.hidden
 	#form_edit_publisher
 		= form_for(@publisher, :remote => true) do |f|
 			h3 = _('Edit publisher')

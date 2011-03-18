@@ -13,7 +13,7 @@ class PublicationsController < ApplicationController
 
   def create
     @publication = Publication.new(params[:publication])
-    @publication.publisher = params[:publisher_id]
+    @publication.publisher = @publisher
     if @publication.save
       redirect_to publisher_publication_url(@publisher, @publication),
         :notice => _('The publication has been created.')
