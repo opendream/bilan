@@ -16,4 +16,8 @@ class ApplicationController < ActionController::Base
     user_signed_in? ? 'application' : 'home'
   end
 
+  def sanitize_page(page)
+    page.is_numeric? ? page.to_i : 1
+  end
+
 end
