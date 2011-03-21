@@ -1,6 +1,6 @@
 h2 = _('Publications')
 
-- if @publications.empty?
+- if @publications.length == 0
 	= _('You have no publication.')
 - else
 	ul
@@ -8,6 +8,7 @@ h2 = _('Publications')
 			li
 				a href="#{publisher_publication_path p.publisher.id, p.id}" = p.title
 				= " (%s)" % p.author
+	== paginate @publications
 
 - content_for :sidebar do
 	ul

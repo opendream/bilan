@@ -53,10 +53,12 @@ p
 	h3 = _('Publications')
 	- if @publisher.publications.size > 0
 		ul
-			- @publisher.publications.order(:created_at).each do |p|
+			- @publisher.publications.order('created_at DESC').limit(15).each do |p|
 				li
 					a href="#{publisher_publication_path @publisher.id, p.id}" = p.title
-					= " (%s)" % p.author
+					= ' (%s)' % p.author
+		- if @publisher.publications.size > 1
+			= link_to(more_link_text, publisher_publications_path(@publisher))
 	- else
 		= _('You have no publication.')
 

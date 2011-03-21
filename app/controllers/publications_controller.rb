@@ -8,7 +8,8 @@ class PublicationsController < ApplicationController
   before_filter :get_publisher, :only => [:show, :new, :create, :edit, :update]
 
   def index
-    @publications = Publication.where(:publisher_id => params[:publisher_id]).order(:created_at)
+    page = sanitize_page params[:page]
+    @publications = Publication.page(page).where(:publisher_id => params[:publisher_id])
   end
 
   def create
