@@ -14,6 +14,7 @@ module ApplicationHelper
     links = '/'
     elements = request.url.split('/')[3..-1] # exclude PROTOCOL, HOST, PORT
     elements.delete('dashboard') # exclude 'dashboard'
+    elements[elements.size - 1] = elements.last.split('?')[0] # remove GET params
     for i in 0...elements.size
       links += elements[i] + '/'
       if i % 2 == 0 # as RESTful, it may be a model name
@@ -41,4 +42,7 @@ module ApplicationHelper
     render :inline => breadcrumbs.join(separator)
   end
 
+  def more_link_text
+    "#{_('more')} &raquo;".html_safe
+  end
 end
