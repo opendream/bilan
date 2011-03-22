@@ -1,16 +1,50 @@
 h2 = _('Dashboard')
 ul.page
-	li#list-publishers
-		h4 = _('My Publishers')
-		- if @publishers.size > 0
+	li#isbn-queue
+		h4 = _('ISBN Queue')
+		- if @isbn_queue.size > 0
 			ul
-				- @publishers.each do |publisher|
+				- @isbn_queue.each do |p|
 					li
-						a href="#{publisher_path publisher.id}" = publisher.name
-		- else
-			= _('You have no publisher.')
+						.item-title
+							= link_to(p.title, publisher_publication_path(p.publisher.id, p.id))
+						.item-action
+							ul
+								li = link_to(_('download'), export_isbn_publisher_publication_path(p.publisher.id, p.id))
+								li = link_to(_('update'), 'javascript:;', :id => p.id)
+
+	li#cip-queue
+		h4 = _('CIP Queue')
+		- if @cip_queue.size > 0
+			ul
+				- @cip_queue.each do |p|
+					li
+						.item-title
+							= link_to(p.title, publisher_publication_path(p.publisher.id, p.id))
+						.item-action
+							ul
+								li = link_to(_('download'), export_cip_publisher_publication_path(p.publisher.id, p.id))
+								li = link_to(_('update'), 'javascript:;', :id => p.id)
+
+	li#completed
+		h4 = _('Completed Publications')
+		- if @completed_publications.size > 0
+			ul
+				- @completed_publications.each do |p|
+					li
+						= link_to(p.title, publisher_publication_path(p.publisher.id, p.id))
 
 - content_for :sidebar do
-	ul
-		li
-			a href="#{new_publisher_path}" = _('Create publisher')
+	h4 = _('My Publishers')
+	- if @publishers.size > 0
+		ul
+			- @publishers.each do |publisher|
+				li
+					a href="#{publisher_path publisher.id}" = publisher.name
+	- else
+		= _('You have no publisher.')	
+
+	p
+		ul
+			li
+				a href="#{new_publisher_path}" = _('Create publisher')

@@ -9,4 +9,10 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me
+
+  def publisher_ids
+    ids = []
+    self.own_publishers.each { |p| ids.push(p.id) }
+    ids
+  end
 end
