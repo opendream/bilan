@@ -14,7 +14,9 @@ module ApplicationHelper
     links = '/'
     elements = request.url.split('/')[3..-1] # exclude PROTOCOL, HOST, PORT
     elements.delete('dashboard') # exclude 'dashboard'
-    elements[elements.size - 1] = elements.last.split('?')[0] # remove GET params
+    if elements.size > 0
+      elements[elements.size - 1] = elements.last.split('?')[0] # remove GET params
+    end
     for i in 0...elements.size
       links += elements[i] + '/'
       if i % 2 == 0 # as RESTful, it may be a model name
@@ -27,9 +29,13 @@ module ApplicationHelper
         breadcrumbs.push(item)
       else
         begin
-          elm_name = elements[i-1].singularize.camelize.constantize.find(elements[i]).name
-          if i == elements.size - 1
-            item = elm_name
+          elm_name = elements[i - 1].singularize.camelize.constantize.find(elements[i]).name
+          if i == elements.size - 1 # last member of the Array
+            if @access_denied
+              item = _('Access denied')
+            else
+              item = elm_name
+            end
           else
             item = link_to(elm_name, links)
           end
