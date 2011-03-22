@@ -181,7 +181,7 @@
 	#form_edit_publisher
 		= form_for(@publisher, :remote => true) do |f|
 			h3 = _('Edit publisher')
-			p#lightbox_message.hide.alert
+			p#lightbox_message.hidden.alert
 			p
 				= f.label :name, _('Name')
 				br
