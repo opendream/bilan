@@ -26,16 +26,6 @@ $(document).ready(function() {
         });
     }
 
-    // FUNCTIONS ---------------------------------------------------------------
-    
-    clearform = function(form_name) {
-        form_name = '#publication_' + form_name + '_';
-        fields = ['name', 'address', 'telephone', 'fax', 'email', 'website'];
-        for (i = 0; i < fields.length; i++) {
-            $(form_name + fields[i]).val('');
-        }
-    }
-
     // ACTION EVENTS -----------------------------------------------------------
 
     $('.close').click(function() {
@@ -102,3 +92,11 @@ $(document).ready(function() {
         }
     });
 });
+
+function clearform(form_name) {
+    form_name = '#publication_' + form_name + '_';
+    fields = ['name', 'address', 'telephone', 'fax', 'email', 'website'];
+    for (i = 0; i < fields.length; i++) {
+        $(form_name + fields[i]).val('');
+    }
+}
