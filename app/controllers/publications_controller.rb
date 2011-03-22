@@ -4,8 +4,9 @@ class PublicationsController < ApplicationController
   autocomplete :distributor, :name
 
   before_filter :authenticate_user!
-  before_filter :get_publication, :only => [:show, :edit, :update, :export_isbn, :export_cip]
-  before_filter :get_publisher, :only => [:show, :new, :create, :edit, :update]
+  before_filter :get_publication, :only => [:show, :edit, :update, :destroy, :export_isbn, :export_cip]
+  before_filter :get_publisher
+  before_filter :authorize_user!
 
   def index
     page = sanitize_page params[:page]
@@ -72,6 +73,16 @@ class PublicationsController < ApplicationController
 
   def get_publisher
     @publisher = Publisher.find(params[:publisher_id])
+  end
+
+  def authorize_user!
+    if @publisher.owner != current_user
+      @access_denied = true
+      redirect_to publisher_path @publisher.id
+    elsif@publication.publisher != @publisher
+      @access_denied = true
+      render :template => 'shared/403'
+    end
   end
 
   def build_pdf(form_type, publication)
