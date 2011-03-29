@@ -60,6 +60,8 @@ Bilan::Application.routes.draw do
       member do
         get 'export_isbn'
         get 'export_cip'
+        get 'update_isbn'
+        get 'update_cip'
       end
       collection do
         get 'autocomplete_press_name'
