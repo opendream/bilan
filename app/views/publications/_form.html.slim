@@ -138,7 +138,7 @@
 			br
 			= f.text_field :press_website
 		p
-			input type="button" value="#{_('Clear Press')}" onclick="javascript:clearform('press');"
+			input type="button" class="btn_clear press" value="#{_('Clear Press')}"
 
 	fieldset.collapsible
 		legend = _('Distributor')
@@ -168,7 +168,7 @@
 			br
 			= f.text_field :distributor_website
 		p
-			input type="button" value="#{_('Clear Distributor')}" onclick="javascript:clearform('distributor');"
+			input type="button" class="btn_clear distributor" value="#{_('Clear Distributor')}"
 	p
 		= f.submit
 		= ' ' + _('or') + ' '

@@ -88,6 +88,12 @@ body {
   background-color: $bgcolor;
 }
 
+p {
+  &.last {
+    margin-bottom: 0;
+  }
+}
+
 form {
   input, textarea {
     font-family: sans-serif;
@@ -126,6 +132,19 @@ form {
       overflow: hidden;
     }
   }
+}
+div#fancybox-content {
+  div.resizable-textarea {
+    textarea.resizable {
+      width: 97%;
+    }
+  }
+  div.grippie {
+      width: 97%;
+  }
+}
+#form_update_cip {
+  width: 450px;
 }
 
 fieldset {
@@ -299,6 +318,10 @@ ul.page {
 }
 
 // ----------------------------------------------------------------------------
+
+.center {
+  text-align: center;
+}
 
 .hidden {
   display: none;

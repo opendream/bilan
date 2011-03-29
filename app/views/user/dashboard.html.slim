@@ -1,35 +1,39 @@
 h2 = _('Dashboard')
 ul.page
-	li#isbn-queue
+	li#isbn_queue
 		h4 = _('ISBN Queue')
 		- if @isbn_queue.size > 0
-			ul
+			ul#isbn_queue_items
 				- @isbn_queue.each do |p|
-					li
-						.item-title
+					li id="isbn_item_#{p.id}"
+						.item_title
 							= link_to(p.title, publisher_publication_path(p.publisher.id, p.id))
-						.item-action
+						.item_action
 							ul
 								li = link_to(_('download'), export_isbn_publisher_publication_path(p.publisher.id, p.id))
-								li = link_to(_('update'), 'javascript:;', :id => p.id)
+								li = link_to(_('update'), \
+								     "#{update_isbn_publisher_publication_path p.publisher.id, p.id}", \
+										 :id => 'isbn_%s' % p.id)
 
-	li#cip-queue
+	li#cip_queue
 		h4 = _('CIP Queue')
 		- if @cip_queue.size > 0
-			ul
+			ul#cip_queue_items
 				- @cip_queue.each do |p|
-					li
-						.item-title
+					li id="cip_item_#{p.id}"
+						.item_title
 							= link_to(p.title, publisher_publication_path(p.publisher.id, p.id))
-						.item-action
+						.item_action
 							ul
 								li = link_to(_('download'), export_cip_publisher_publication_path(p.publisher.id, p.id))
-								li = link_to(_('update'), 'javascript:;', :id => p.id)
+								li = link_to(_('update'), \
+								     "#{update_cip_publisher_publication_path p.publisher.id, p.id}", \
+										 :id => 'cip_%s' % p.id)
 
 	li#completed
 		h4 = _('Completed Publications')
 		- if @completed_publications.size > 0
-			ul
+			ul#completed_items
 				- @completed_publications.each do |p|
 					li
 						= link_to(p.title, publisher_publication_path(p.publisher.id, p.id))
@@ -43,8 +47,33 @@ ul.page
 					a href="#{publisher_path publisher.id}" = publisher.name
 	- else
 		= _('You have no publisher.')	
-
 	p
 		ul
 			li
 				a href="#{new_publisher_path}" = _('Create publisher')
+
+.hidden
+	#form_update_isbn
+		form
+			h4.center = _('Update ISBN')
+			p
+				= label_tag :title, _('Title') + ': '
+				span.title
+			p
+				= label_tag :isbn, _('ISBN') + ': '
+				= text_field_tag :isbn
+			p.center.last
+				input id="update_isbn" type="button" value="#{_('Update')}"
+
+	#form_update_cip
+		form
+			h4.center = _('Update CIP')
+			p
+				= label_tag :title, _('Title') + ': '
+				span.title
+			p
+				= label_tag :cip, _('CIP') + ': '
+				br
+				= text_area_tag :cip, nil, :class => 'resizable'
+			p.center.last
+				input id="update_cip" type="button" value="#{_('Update')}"

@@ -4,7 +4,8 @@ class PublicationsController < ApplicationController
   autocomplete :distributor, :name
 
   before_filter :authenticate_user!
-  before_filter :get_publication, :only => [:show, :edit, :update, :destroy, :export_isbn, :export_cip]
+  before_filter :get_publication, :except => [:index, :create, :new,
+                                    :autocomplete_press_name, :autocomplete_distributor_name]
   before_filter :get_publisher
   before_filter :authorize_user!
 
@@ -56,6 +57,16 @@ class PublicationsController < ApplicationController
   def destroy
   end
 
+  def update_isbn
+    @publication.update_attributes({:isbn => params[:isbn]})
+    render :json => @publication
+  end
+
+  def update_cip
+    @publication.update_attributes({:cip => params[:cip]})
+    render :json => @publication
+  end
+
   def export_isbn
     build_pdf('isbn', @publication) 
   end
@@ -79,7 +90,7 @@ class PublicationsController < ApplicationController
     if @publisher.owner != current_user
       @access_denied = true
       redirect_to publisher_path @publisher.id
-    elsif@publication.publisher != @publisher
+    elsif @publication && @publication.publisher != @publisher
       @access_denied = true
       render :template => 'shared/403'
     end
