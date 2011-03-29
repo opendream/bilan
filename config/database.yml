@@ -40,7 +40,9 @@ test:
   database: bilan_test
   pool: 5
   username: bilan
-  password:
+  password: bilan
+  host: localhost
+  port: 5432
 
 production:
   adapter: postgresql
