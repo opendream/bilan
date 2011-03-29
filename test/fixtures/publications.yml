@@ -1,59 +1,59 @@
 publisher1:
-	id: 1
-	publisher_id: 1
-	title: Publisher 1
-	author: Author 1
+  id: 1
+  publisher_id: 1
+  title: Publisher 1
+  author: Author 1
 
 publisher2:
-	id: 2
-	publisher_id: 1
-	title: Publisher 2
-	author: Author 2
+  id: 2
+  publisher_id: 1
+  title: Publisher 2
+  author: Author 2
 
 publisher3:
-	id: 3
-	publisher_id: 1
-	title: Publisher 3
-	author: Author 3
+  id: 3
+  publisher_id: 1
+  title: Publisher 3
+  author: Author 3
 
 publisher4:
-	id: 4
-	publisher_id: 1
-	title: Publisher 4
-	author: Author 4
+  id: 4
+  publisher_id: 1
+  title: Publisher 4
+  author: Author 4
 
 publisher5:
-	id: 5
-	publisher_id: 1
-	title: Publisher 5
-	author: Author 5
+  id: 5
+  publisher_id: 1
+  title: Publisher 5
+  author: Author 5
 
 publisher6:
-	id: 6
-	publisher_id: 1
-	title: Publisher 6
-	author: Author 6
+  id: 6
+  publisher_id: 1
+  title: Publisher 6
+  author: Author 6
 
 publisher7:
-	id: 7
-	publisher_id: 1
-	title: Publisher 7
-	author: Author 7
+  id: 7
+  publisher_id: 1
+  title: Publisher 7
+  author: Author 7
 
 publisher8:
-	id: 8
-	publisher_id: 1
-	title: Publisher 8
-	author: Author 8
+  id: 8
+  publisher_id: 1
+  title: Publisher 8
+  author: Author 8
 
 publisher9:
-	id: 9
-	publisher_id: 1
-	title: Publisher 9
-	author: Author 9
+  id: 9
+  publisher_id: 1
+  title: Publisher 9
+  author: Author 9
 
 publisher10:
-	id: 10 
-	publisher_id: 1
-	title: Publisher 10
-	author: Author 10
+  id: 10 
+  publisher_id: 1
+  title: Publisher 10
+  author: Author 10
