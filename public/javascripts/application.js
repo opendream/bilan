@@ -121,16 +121,16 @@ $(document).ready(function() {
     });
 
 
-    var press_find_url = $('input#press_remote_find_by_name').val();
+    var find_press_url = $('input#press_remote_find_by_name').val();
     $('#publication_press_name').focusout(function() {
         self = this;
         setTimeout(function() {
             if (jQuery.trim($(self).val()) != '') {
                 $.getJSON(
-                    press_find_url,
+                    find_press_url,
                     { term: $(self).val() },
                     function(data) {
-                        if (data != null) {
+                        if (jQuery.trim($(self).val()) != '' && data != null) {
                             $('#publication_press_address').val(data.press.address);
                             $('#publication_press_telephone').val(data.press.telephone);
                             $('#publication_press_fax').val(data.press.fax);
@@ -143,16 +143,16 @@ $(document).ready(function() {
         }, 300);
     });
 
-    var distributor_find_url = $('input#distributor_remote_find_by_name').val();
+    var find_distributor_url = $('input#distributor_remote_find_by_name').val();
     $('#publication_distributor_name').focusout(function(e) {
         self = this;
         setTimeout(function() {
             if (jQuery.trim($(self).val()) != '') {
                 $.getJSON(
-                    distributor_find_url,
+                    find_distributor_url,
                     { term: $(self).val() },
                     function(data) {
-                        if (data != null) {
+                        if (jQuery.trim($(self).val()) != '' && data != null) {
                             $('#publication_distributor_address').val(data.distributor.address);
                             $('#publication_distributor_telephone').val(data.distributor.telephone);
                             $('#publication_distributor_fax').val(data.distributor.fax);
