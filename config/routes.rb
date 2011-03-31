@@ -58,6 +58,8 @@ Bilan::Application.routes.draw do
   resources :publishers do
     resources :publications do
       member do
+        get 'print_isbn'
+        get 'print_cip'
         get 'export_isbn'
         get 'export_cip'
         get 'update_isbn'

@@ -172,4 +172,10 @@ $(document).ready(function() {
             $(form_name + fields[i]).val('');
         }
     });
+
+
+    $('a.print').click(function(e) {
+        e.preventDefault();
+        window.open($(this).attr('href'));
+    });
 });

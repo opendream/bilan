@@ -124,6 +124,14 @@ fieldset.collapsible
 		li
 			a href="#{edit_publisher_publication_path}" = _('Edit')
 		li
-			a href="#{export_isbn_publisher_publication_path @publisher.id, @publication.id}" = _('Export ISBN requested form')
+			a href="#{print_isbn_publisher_publication_path @publisher.id, @publication.id}" class="print isbn"
+				= _('Print ISBN request form')
 		li
-			a href="#{export_cip_publisher_publication_path @publisher.id, @publication.id}" = _('Export CIP requested form')
+			a href="#{print_cip_publisher_publication_path @publisher.id, @publication.id}" class="print cip"
+				= _('Print CIP request form')
+		li
+			a href="#{export_isbn_publisher_publication_path @publisher.id, @publication.id}"
+				= _('Export ISBN request form')
+		li
+			a href="#{export_cip_publisher_publication_path @publisher.id, @publication.id}"
+				= _('Export CIP request form')

@@ -75,6 +75,14 @@ class PublicationsController < ApplicationController
     build_pdf('cip', @publication) 
   end
 
+  def print_isbn
+    render :template => 'publications/isbn_form_template', :layout => nil
+  end
+
+  def print_cip
+    render :template => 'publications/cip_form_template', :layout => nil
+  end
+
   private #--------------------------------------------------------------------
 
   def get_publication
@@ -97,20 +105,20 @@ class PublicationsController < ApplicationController
   end
 
   def build_pdf(form_type, publication)
-    output_file = '/tmp/bilan/%s/%s/%s_requested_form.pdf' %
+    output_pdf = '/tmp/bilan/%s/%s/%s_request_form.pdf' %
         [publication.publisher.id, publication.id, form_type]
-    template = 'app/views/publications/%s_form_template.html.slim' % form_type
+    template = 'app/views/publications/%s_form_template.pdf.slim' % form_type
+
+    abs_dir = File.dirname(output_pdf)
+    FileUtils.mkdir_p(abs_dir) unless Dir.exist?(abs_dir)
 
     text = Slim::Template.new(template).render(publication)
 
-    abs_dir = File.dirname(output_file)
-    FileUtils.mkdir_p(abs_dir) unless Dir.exist?(abs_dir)
-
     pdf = PDFKit.new(text, :page_size => 'A4')
-    pdf.stylesheets << 'public/stylesheets/compiled/pdf.css'
-    pdf.to_file(output_file)
+    #pdf.stylesheets << 'public/stylesheets/compiled/pdf.css'
+    pdf.to_file(output_pdf)
 
-    send_file(output_file, :type => 'application/pdf')
+    send_file(output_pdf, :type => 'application/pdf')
     return # to avoid double render call
   end
 
