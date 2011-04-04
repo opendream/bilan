@@ -3,7 +3,6 @@ html
 	head
 		meta http-equiv="Content-Type" content="text/html; charset=utf-8"
 		title = "ISBN request form"
-		= stylesheet_link_tag 'compiled/print_html.css', :media => 'screen, print'
 	body
 		.container
 			#isbn
@@ -22,17 +21,17 @@ html
 						span.label
 							= _('Author') + ' (Author):'
 						span.content
-							= @publication.author
+							= author
 					li
 						span.label
 							= _('Title') + ' (Title):'
 						span.content
-							= @publication.title
+							= title
 					li
 						span.label
 							= _('Edition') + ' (Edition):'
 						span.content
-							= @publication.edition
+							= edition
 					li
 						span
 							span.label
@@ -41,118 +40,118 @@ html
 							span.label
 								= _('Thai') + ' (Thai):'
 							span.content
-								= @publication.publisher_name
+								= publisher_name
 								= ', '
-								= @publication.publisher_address
+								= publisher_address
 							.clear
 							span.label
 								= _('English') + ' (English):'
 							span.content
-								= @publication.publisher_name_en
+								= publisher_name_en
 								= ', '
-								= @publication.publisher_address_en
+								= publisher_address_en
 							.inline
-								- unless @publication.publisher_telephone.blank?
+								- unless publisher_telephone.blank?
 									span
 										span.label = 'Tel:'
-										span.content = @publication.publisher_telephone
-								- unless @publication.publisher_fax.blank?
+										span.content = publisher_telephone
+								- unless publisher_fax.blank?
 									span
 										span.label = 'Fax:'
-										span.content = @publication.publisher_fax
-								- unless @publication.publisher_email.blank?
+										span.content = publisher_fax
+								- unless publisher_email.blank?
 									span
 										span.label = 'E-mail:'
-										span.content = @publication.publisher_email
-								- unless @publication.publisher_website.blank?
+										span.content = publisher_email
+								- unless publisher_website.blank?
 									span
 										span.label = 'Website:'
-										span.content = @publication.publisher_website
+										span.content = publisher_website
 					li
 						span.label
 							= _("Press's name and address") + " (Press's name and address)"
 						.clear
 						span
-							= @publication.press_name
+							= press_name
 							= ' '
-							= @publication.press_address
+							= press_address
 						.inline
-							- unless @publication.press_telephone.blank?
+							- unless press_telephone.blank?
 								span
 									span.label = 'Tel:'
-									span.content= @publication.press_telephone
-							- unless @publication.press_fax.blank?
+									span.content= press_telephone
+							- unless press_fax.blank?
 								span
 									span.label = 'Fax:'
-									span.content = @publication.press_fax
-							- unless @publication.press_email.blank?
+									span.content = press_fax
+							- unless press_email.blank?
 								span
 									span.label = 'E-mail:'
-									span.content = @publication.press_email
-							- unless @publication.press_website.blank?
+									span.content = press_email
+							- unless press_website.blank?
 								span
 									span.label = 'Website:'
-									span.content = @publication.press_website
+									span.content = press_website
 					li
 						span.label
 							= _('Published year') + ' (Year):'
 						span.content
-							= @publication.year
+							= year
 					li
 						span.label
 							= _('Page amount') + ' (Page):'
 						span.content
-							= @publication.page
+							= page
 					li
 						span.label
 							= _('Price') + ' (Price):'
 						span.content
-							= @publication.price
+							= price
 					li
 						span.label
 							= _('Copy amount') + ' (Copies):'
 						span.content
-							= @publication.copy
+							= copy
 					li
 						span.label
 							= _('Publication type') + ' (Type of Publication):'
 						span.content
-							- if @publication.publication_type == 9
-								= @publication.get_publication_type_name
+							- if publication_type == 9
+								= get_publication_type_name
 								= ' '
-								= @publication.publication_type_other
+								= publication_type_other
 							- else
-								= @publication.get_publication_type_name
+								= get_publication_type_name
 					li
 						span.label
 							= _("Distributor's name and address") + " (Distributor's name and address)"
 						.clear
 						span
-							= @publication.distributor_name
+							= distributor_name
 							= ' '
-							= @publication.distributor_address
+							= distributor_address
 						.inline
-							- unless @publication.distributor_telephone.blank?
+							- unless distributor_telephone.blank?
 								span
 									span.label = 'Tel:'
-									span.content = @publication.distributor_telephone
-							- unless @publication.distributor_fax.blank?
+									span.content = distributor_telephone
+							- unless distributor_fax.blank?
 								span
 									span.label = 'Fax:'
-									span.content = @publication.distributor_fax
-							- unless @publication.distributor_email.blank?
+									span.content = distributor_fax
+							- unless distributor_email.blank?
 								span
 									span.label = 'E-mail:'
-									span.content = @publication.distributor_email
-							- unless @publication.distributor_website.blank?
+									span.content = distributor_email
+							- unless distributor_website.blank?
 								span
 									span.label = 'Website:'
-									span.content = @publication.distributor_website
+									span.content = distributor_website
 					li
 						span.label
 							=  _('Estimated number of titles per year') + ' (Estimated number of titles per year):'
 						span.content
-							= @publication.title_per_year
+							= title_per_year
 			#info
 				span.h3 = _('Please send this form to')
 				span.content = _('Address of the ISBN office at the National Library of Thailand')
@@ -169,6 +168,3 @@ html
 							label = ('ISBN grant officer')
 						.content
 							| &nbsp;
-
-		javascript:
-			window.print();

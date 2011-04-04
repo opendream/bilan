@@ -1,0 +1,112 @@
+@import "blueprint";
+
+@font-face {
+	font-family: THSarabun;
+  src: url("Dir.pwd/public/fonts/thsarabun.eot");
+  src: url("Dir.pwd/public/fonts/thsarabun.woff") format("woff"),
+       url("Dir.pwd/public/fonts/thsarabun.ttf") format("truetype");
+}
+
+@font-face {
+	font-family: THSarabunBold;
+  src: url("Dir.pwd/public/fonts/thsarabun-bold.eot");
+  src: url("Dir.pwd/public/fonts/thsarabun-bold.woff") format("woff"),
+       url("Dir.pwd/public/fonts/thsarabun-bold.ttf") format("truetype");
+}
+
+@mixin center {
+  text-align: center;
+}
+
+// -----------------------------------------------------------------------------
+
+body {
+  font: {
+    family: THSarabun;
+    size: 1.8em;
+  }
+  color: #000;
+}
+
+p {
+  margin-top: 0.5em;
+  margin-bottom: 0.8em;
+}
+
+ol { 
+  @include clearfix;
+  margin: 0;
+  li {
+    overflow: visible;
+    list-style-type: decimal;
+    padding: 5px 0;
+  }
+}
+
+ul {
+  margin-top: 10px;
+  margin-bottom: 0;
+}
+
+// -----------------------------------------------------------------------------
+
+.container {
+  @include container;
+}
+
+.inline span {
+  padding-right: 20px;
+  span {
+    padding-right: 0;
+  }
+}
+
+.clear {
+  clear: both;
+}
+
+span.h3 {
+  font: {
+    family: THSarabunBold;
+    size: 120%;
+  }
+  text-decoration: underline;
+}
+
+span.label, label {
+  font-family: THSarabunBold;
+}
+
+span.content {
+  padding-left: 10px;
+}
+
+// -----------------------------------------------------------------------------
+
+#header {
+  font: {
+    family: THSarabunBold;
+    size: 1.2em; 
+  }
+  text-align: center;
+  padding: 20px 0;
+}
+
+#isbn, #officer {
+  @include clearfix;
+  .wrapper {
+    float: right;
+  }
+  .label, .content {
+    float: left;
+  }
+  .content {
+    font-size: 70%;
+    width: 250px;
+    border-bottom: 1px dotted #666;
+  }
+}
+
+#info {
+  padding: 10px 0;
+}

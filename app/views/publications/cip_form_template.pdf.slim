@@ -3,7 +3,6 @@ html
 	head
 		meta http-equiv="Content-Type" content="text/html; charset=utf-8"
 		title = "CIP request form"
-		= stylesheet_link_tag 'compiled/print_html.css', :media => 'screen, print'
 	body
 		.container
 			#header
@@ -16,82 +15,82 @@ html
 						span.label
 							= _('Author') + ' (Author):'
 						span.content
-							= @publication.author
+							= author
 					li
 						span.label
 							= _('Title') + ' (Title):'
 						span.content
-							= @publication.title
+							= title
 					li
 						span.label
 							= _('Edition') + ' (Edition):'
 						span.content
-							= @publication.edition
+							= edition
 					li
 						span.label
 							= _('Publisher') + ' (Publisher):'
 						span.content
-							= @publication.publisher_name
+							= publisher_name
 							= ', '
-							= @publication.publisher_address
-						- unless @publication.publisher_name_en.empty?
+							= publisher_address
+						- unless publisher_name_en.empty?
 							.clear
 							span
-								= @publication.publisher_name_en
+								= publisher_name_en
 								= ', '
-								= @publication.publisher_address_en
+								= publisher_address_en
 						.inline
 							span
 								span.label
 									= _('Tel') + ':'
 								span.content
-									= @publication.publisher_telephone
+									= publisher_telephone
 							span
 								span.label
 									= _('Fax') + ':'
 								span.content
-									= @publication.publisher_fax
+									= publisher_fax
 							span
 								span.label
 									= _('E-mail') + ':'
 								span.content
-									= @publication.publisher_email
+									= publisher_email
 							span
 								span.label
 									= _('Website') + ':'
 								span.content
-									= @publication.publisher_website
+									= publisher_website
 					li
 						span.label
 							= _('Published year') + ' (Year):'
 						span.content
-							= @publication.year
+							= year
 					li
 						span.label
 							= _('Page amount') + ' (Page):'
 						span.content
-							= @publication.page
+							= page
 					li
 						span.label
 							= _('ISBN') + ':'
 						span.content
-							= @publication.get_isbn
+							= get_isbn
 					li
 						span.label
 							= _('Synopsis') + ':'
 						span.content
-							== BlueCloth.new(@publication.synopsis).to_html
-					- if @publication.translated
+							== BlueCloth.new(synopsis).to_html
+					- if translated
 						li
 							span.label
 								= _('Translated from') + ':'
 							span.content
-								= @publication.year
+								= year
 							.clear
 							span.label
 								= _('Original author') + ':'
 							span.content
-								= @publication.year
+								= year
 			#remark
 				span.h3 = _('Remark')
 				ul
@@ -113,6 +112,3 @@ html
 							label = ('CIP published officer')
 						.content
 							| &nbsp;
-
-		javascript:
-			window.print();

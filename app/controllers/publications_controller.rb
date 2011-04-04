@@ -105,17 +105,29 @@ class PublicationsController < ApplicationController
   end
 
   def build_pdf(form_type, publication)
-    output_pdf = '/tmp/bilan/%s/%s/%s_request_form.pdf' %
-        [publication.publisher.id, publication.id, form_type]
+    folder = '/tmp/bilan/%s/%s' % [publication.publisher.id, publication.id]
+    output_pdf = '%s/%s_request_form.pdf' % [folder, form_type]
+    output_html = '%s/%s_request_form.html' % [folder, form_type]
+    input_stylesheet = 'public/stylesheets/compiled/print_pdf.css'
+    output_stylesheet = '/tmp/bilan/print_pdf.css'
     template = 'app/views/publications/%s_form_template.pdf.slim' % form_type
 
+    # Create a directory
     abs_dir = File.dirname(output_pdf)
     FileUtils.mkdir_p(abs_dir) unless Dir.exist?(abs_dir)
 
+    # Replace font path
+    css = File.read(input_stylesheet)
+    css.gsub!(/Dir\.pwd/, Dir.pwd)
+    File.open(output_stylesheet, 'w') { |f| f.write(css) }
+
+    # Compile a template
     text = Slim::Template.new(template).render(publication)
 
+    File.open(output_html, 'w') { |f| f.write(text) }
+
     pdf = PDFKit.new(text, :page_size => 'A4')
-    #pdf.stylesheets << 'public/stylesheets/compiled/pdf.css'
+    pdf.stylesheets << output_stylesheet
     pdf.to_file(output_pdf)
 
     send_file(output_pdf, :type => 'application/pdf')
