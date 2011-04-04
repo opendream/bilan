@@ -1,2 +1,3 @@
-h2 = _('Edit publication')
-== render :partial => 'form', :locals => {:publication => @publication, :publisher => @publisher, :action_url => publisher_publication_path}
+.page-block
+	h2 = _('Edit publication')
+	== render :partial => 'form', :locals => {:publication => @publication, :publisher => @publisher, :action_url => publisher_publication_path}

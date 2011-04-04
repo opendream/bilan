@@ -2,14 +2,17 @@
 	a href="/" = "LOGO"
 
 #user
-	ul
 		- if user_signed_in?
-			li
-				| #{_('Welcome')}, #{current_user.email}
-			li.last
-				== link_to _('Sign out'), destroy_user_session_path
+			.login
+				ul
+					li
+						span #{_('Welcome')}
+						| #{current_user.email}
+					li.signout
+						== link_to _('Sign out'), destroy_user_session_path
 		- else
-			li
-				== link_to _('Sign in'), new_user_session_path
-			li.last
-				== link_to _('Sign up'), new_user_registration_path
+			ul
+				li.signin
+					== link_to _('Sign in'), new_user_session_path
+				li.signup
+					== link_to _('Sign up'), new_user_registration_path

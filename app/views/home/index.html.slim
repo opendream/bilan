@@ -1,1 +1,8 @@
-h1 Hello
+h1.step-to-isbn = _('Steps to request ISBN & CIP')
+div#banner
+.requset-block
+	.requset-button = link_to(_('แบบฟอร์มขอ ISBN และ CIP'), '#')
+	p
+		= _('ก่อนกรอกแบบฟอร์มเพื่อขอรับ ISBN และ CIP นั้น ต้องเป็นสมัครสมาชิกของเว็บไซต์')
+		span = link_to(_('Sign in'), '#')
+		span = link_to(_('Register'), '#')

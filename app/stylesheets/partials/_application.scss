@@ -1,12 +1,14 @@
-$bgcolor: #333;
-$header-bgcolor: #666;
-$content-bgcolor: #fff;
+$bgcolor: #abc;
+$header-bgcolor: #fff;
+$about-bgcolor: #fff;
+$content-bgcolor: #f6f;
+$footer-bgcolor: #E5E5E5;
 
 $text-color: #333;
 $text-dark-color: $text-color;
 $text-light-color: #eee;
 
-$link-color: #666;
+$link-color: #0086A8;
 $link-dark-color: $link-color;
 $link-light-color: #ccc;
 
@@ -73,43 +75,86 @@ $tab-active-bgcolor: $content-bgcolor;
   -moz-border-radius: $r;
   -webkit-border-radius: $r;
 }
+@mixin border-r($px, $color, $r){
+  border-radius: $r;
+  -moz-border-radius: $r;
+  -webkit-border-radius: $r;
+  border: $px solid $color;
+}
 
 @mixin row {
   padding: 10px 0;
 }
 
-// -----------------------------------------------------------------------------
-
-body {
-  @include blueprint-typography-defaults;
-  @include link;
-  font-family: sans-serif;
-  color: $text-dark-color;
-  background-color: $bgcolor;
+@mixin bg-image($img,$w,$h) {
+  background: url('/images/#{$img}') no-repeat ;
+  display: block;
+  width: $w;
+  height: $h;
+  text-indent: -999em;
+  cursor: pointer;
+  overflow: hidden;
+}
+@mixin border-bottom($r) {
+  -webkit-border-bottom-left-radius: $r;
+  -webkit-border-bottom-right-radius: $r;
+  -moz-border-radius-bottomleft: $r;
+  -moz-border-radius-bottomright: $r;
+}
+@mixin border-top($r) {
+  -webkit-border-top-left-radius: $r;
+  -webkit-border-top-right-radius: $r;
+  -moz-border-radius-topleft: $r;
+  -moz-border-radius-topright: $r;
+}
+@mixin button($bg-color, $border-color){
+  padding: 5px;
+  font-size: 1em;
+  background: none;
+  border: none;
+  background-color: $bg-color ;
+  cursor: pointer;
+  @include border-r(1px, $border-color, 5px);
 }
 
+
+// -----------------------------------------------------------------------------
+
 p {
+	font-family: sans-serif;
+	font-size: 0.9em;
+	line-height: 1.5em;
   &.last {
     margin-bottom: 0;
   }
 }
-
+ul,ol,li,dd,dt{}
 form {
   input, textarea {
     font-family: sans-serif;
+    @include round(5px);
+    &:focus{ background-color: #d2f6ca;}
   }
   input[type=text], input[type=password], textarea {
     border: 1px solid #ccc;
-    width: 250px;
-    padding: 5px;
+    width: 350px;
+    padding: 10px;
+    font-size: 1em;
+    margin-top: 5px;
   }
   input[readonly=readonly], textarea[readonly=readonly] {
     background-color: #eee;
     color: lighten($text-dark-color, 25%);
   }
+  input#user_submit, input#publisher_submit, #publication_submit{
+	  @include button(#19BAE3, #137e9a);
+	  &:hover{ background-color: #1a8aa7;}
+  }
+  
   .field_with_errors {
     input {
-      border: 1px solid red;
+      border: 2px solid red;
+      background-color: #EAFFDE;
     }
   }
   div.resizable-textarea {
@@ -174,6 +219,7 @@ fieldset {
 label {
   font-weight: bold;
   padding-right: 5px;
+  margin-bottom: 5px;
   &.normal {
     font-weight: normal;
   }
@@ -181,6 +227,18 @@ label {
 
 span.required {
   color: red;
+}
+
+/********************** Layout *********************/
+body {
+  @include blueprint-typography-defaults;
+  @include link;
+	font-size: 16px;
+	line-height: 1.5em;
+  font-family: sans-serif;
+  color: $text-dark-color;
+  background-color: $footer-bgcolor;
+  h1,h2,h3,h4,h5,h6{ margin-bottom: 10px;line-height: 1.3em;}
 }
 
 .container {
@@ -194,13 +252,51 @@ span.required {
   padding-top: 7px;
   padding-bottom: 7px;
   display: block;
-  overflow: hidden;
+  position: relative;
+  width: 950px;
   #logo {
     @include column(3, true);
+		@include bg-image('logo.png', 326px, 87px);
   }
   #user {
-    @include column($blueprint-grid-columns - 3, true);
-    text-align: right;
+/*     @include column($blueprint-grid-columns - 3, true); */
+/*     text-align: right; */
+		position: absolute;
+		right: 0px;
+		top: 10px;
+		.login{
+			background-color: #eeeeee;
+			float: left;
+			padding: 10px;
+			position: relative;
+			top: -15px;;
+			font-size: 0.9em;
+			@include border-bottom(5px);
+			color: #383939;
+			a{ color: #0086a8;}
+			span{ margin-right: 5px;}
+		}
+		li{ float: left;}
+    .signup{
+	    margin-right: 0px;
+	    a{
+			  @include bg-image('btn-signin-signup.png', 85px, 27px);
+			  &:hover{
+				  background-position: 0px -27px;
+			  }
+	    }
+	  }
+    .signin a{
+		  @include bg-image('btn-signin-signup.png', 85px, 27px);
+		  background-position: 0px -54px;
+		  &:hover{
+			  background-position: 0px -81px;
+		  }
+    }
+    .signout{
+	    border-left: 1px solid #CFCFCF;
+	    padding-left: 10px;
+    }
   }
 }
 
@@ -208,37 +304,87 @@ span.required {
   background-color: $header-bgcolor;
 }
 #content-wrapper {
-  background-color: $content-bgcolor;
   padding: 20px 0;
+  background: url('/images/bg_content.png') ;
+  #banner{
+	  @include bg-image('banner-step-to-isbn.png', 950px, 305px);
+	  cursor: default;
+  }
+  .step-to-isbn{
+	  @include bg-image('h1-step-isbn.png', 326px, 36px);
+	  margin: 10px 0px 15px;
+  }
+  .requset-block{
+	  @include bg-image('bg-requset-button.png', 632px, 100%);
+	  position: relative;
+	  margin: 0 auto;
+	  margin-top: 20px;
+	  text-indent: 0em;
+	  padding: 70px 0px 0px;
+	  p{ margin: 0px;}
+	  .requset-button{
+		  @include bg-image('btn-requset-isbn.png', 220px, 33px);
+		  position: absolute;
+		  top: 7px;
+		  right: 7px;
+		  &:hover{ background-position: 0px -33px;}
+	  }
+	  span{ padding: 0px 10px; @include link;}
+  }
 }
 #header, #footer {
   @include column($blueprint-grid-columns, true);
-  padding-top: 15px;
+  padding-top: 5px;
 }
 #header {
+	margin-bottom: 20px;
   #banner {
     height: 50px;
   }
   #navigations {
     @include inline-list;
     @include link($link-dark-color);
-    padding: 10px 0;
     display: block;
     overflow: hidden;
+    float: right;
+    margin: 50px 0px 0px;
     li {
-      background-color: #ccc;
+	    @include link(#171a1c);
       padding: 5px;
+      margin: 0px;
+      font-size: 1.2em;
       &:hover {
-        background-color: #333;
+        color: #1b94b3;
       }
     }
+    .member{ margin: 0px 20px;}
     .right {
       float: right;
     }
   }
 }
+#about-wrapper{
+	background-color: $about-bgcolor;
+	.about{ padding: 20px 0px 0px;}
+}
 #footer {
-  color: $text-light-color;
+  color: #4b4a4a;
+  padding: 20px 0px 10px;
+  #footer-menu{
+	  padding: 12px 0px 0px;
+	  margin: 0px;
+	  float: left;
+	  li{
+		  float: left;
+		  list-style: none;
+		  font-size: 0.8em;
+	  }
+	  .member{ margin: 0px 20px;}
+  }
+  #nstda{
+	  @include bg-image('logo-nstda.png', 106px, 47px);
+	  float: right;
+  }
 }
 
 #breadcrumb {
@@ -248,45 +394,202 @@ span.required {
 .one-col {
   #content {
     @include column($blueprint-grid-columns, true);
+    
   }
 }
 
 .two-cols {
   overflow: hidden;
   #content {
-    $content-columns: ceil(3 * $blueprint-grid-columns / 4);
-    @include column($content-columns);
+/*     $content-columns: ceil(3 * $blueprint-grid-columns / 4); */
+/*     @include column($content-columns); */
+    @include border-r(1px, #cfcfcf, 5px);
+    background-color: #fff;
+    float: left;
+    width: 690px;
+    margin-right: 20px;
+    #breadcrumb{
+	    background-color: #bf1e6b;
+	    padding: 5px 10px;
+	    color: #fff;
+	    margin: 0px;
+	    @include  border-top(5px);
+	    a{color: #fff; font-size: 0.9em; &:hover{color: #cfcfcf;}}
+    }
+    .title{
+			font-size: 1em;
+			background: url('/images/icon.png') no-repeat 0px -136px;
+			padding: 0px 0px 0px 25px;
+			margin-bottom: 15px;
+    }
+    .page-block{padding: 20px; width: 650px;}
     .child-items {
       border-top: 1px solid #999;
       padding-top: 20px;
+      ul{ padding-left: 20px;margin: 0px;}
+      ul li{ margin: 0px;}
     }
+    
   }
   #sidebar {
-    $sidebar-columns: floor($blueprint-grid-columns / 4);
-    @include column($sidebar-columns, true);
+/*     $sidebar-columns: floor($blueprint-grid-columns / 4); */
+/*     @include column($sidebar-columns, true); */
+    @include border-r(1px, #cfcfcf, 5px);
+    background-color: #fff;
+    padding: 20px 10px;
+    float: left;
+    width: 208px;
+    h4{ margin: 0px 0px 10px;}
+    .create-publisher a{
+	    @include bg-image('/btn-add-publisher.png', 202px, 48px);
+	    margin: 0px 0px 0px 3px;
+	    &:hover{ background-position: 0px -48px;}
+    }
+    
     ul {
       margin: 0;
       padding: 0;
+      list-style: none;
     }
-    li {
-      @include round(5px);
-      list-style-type: none;
-      background-color: #ccc;
-      margin-bottom: 5px;
-      padding: 6px;
-      text-align: center;
-      &:hover {
-        background-color: #ddd;
-      }
+    .new_publication, .edit_publisher{
+	    @include bg-image('btn-add-publisher.png', 202px, 48px);
+	    background-position: 0px -96px;
+	    margin: 0px 0px 10px 3px;
+	    &:hover{ background-position: 0px -144px;}
+    }
+    .edit_publisher{
+	    background-position: 0px -192px;
+	    &:hover{ background-position: 0px -240px;}
+    }
+    .publication-sidebar{
+	    li{margin: 0px 0px 10px 0px;}
+	    a{
+		    @include button(#efefef, #cfcfcf);
+		    font-size: 0.9em;
+		    display: block;
+		    width: 195px;
+		    text-align: center;
+		    &:hover{ background-color: #eaeaea; color: #909090; text-decoration: none;}
+	    }
     }
   }
 }
+
+
+/*************************** End Layout ***************************/
+
+/********* ISBN Queue & CIP Queue & Completed Publications *********/
+.page{list-style: none;}
+#isbn_queue, #cip_queue, #completed{
+	float: left;
+	width: 310px;
+	margin-right: 20px;
+	list-style: none;
+	#isbn_queue_items, #isbn_queue_items ul,
+	#cip_queue_items, #cip_queue_items ul,
+	#completed_items, #completed_items ul{ padding: 10px 0px 0px 0px; list-style: none;}
+	#completed, #completed_items .info{ width: 620px !important;}
+	#cip_queue_items li{ margin-bottom: 10px;}
+	
+	.info{ float: left;
+		li{
+			padding-left: 100px;
+			margin: 0px !important;
+			font-size: 0.9em;
+			span{
+				float: left;
+				width: 60px;
+			}
+		}
+		.cover{
+			padding-left: 10px;
+			float: left;
+			width: 88px;
+			}
+	}
+	.feature{
+		background-color: #ededed;
+		@include border-r(1px , #c6c6c6, 5px);
+		padding: 7px !important;
+		float: right;
+		margin-bottom: 10px;
+		li{float: left; margin: 0px !important;}
+		a{@include bg-image('/icon.png', 18px, 17px);}
+		.update{ background-position: 0px -34px; &:hover{ background-position: 0px -51px;}}
+		.download{
+			background-position: 0px -68px;
+			height: 17px;
+			margin: 0px 12px;
+			&:hover{ background-position: 0px -85px;}}
+		.print{
+			background-position: 0px -102px;
+			height: 18px;
+			&:hover{ background-position: 0px -119px;}}
+	}
+}
+#cip_queue{
+	float: left;
+	width: 310px;
+	margin-right: 0px;
+}
+#completed{
+	clear: both;
+	width: 650px;
+	.title{ margin-bottom: 0px !important;}
+	#completed_items{ padding: 0px;}
+}
+.publications{
+	list-style: none;
+	padding: 0px !important;
+	li{
+		float: left;
+		width: 640px;
+		margin-bottom: 10px !important;
+	}
+	.cover{
+		float: left;
+		width: 88px;
+	}
+}
+
+/* .publishers-list */
+.publishers-list{
+	margin-bottom: 10px;
+	list-style: none;
+	padding: 0px;
+	li{ margin-bottom: 10px;}
+  a{
+    background: url('/images/icon.png') no-repeat 0px -17px;	
+    padding: 0px 0px 0px 25px;
+    height: 20px;
+    &:hover{ background-position: 0px 0px;}
+  }
+}
+
+
+/* tabs */
+.isbn-tab, .cip-tab{
+	background: #9d9d9d url(/images/bg-clip-right.png) no-repeat top right;
+	float: left;
+	padding: 5px 15px 3px 10px;
+	margin-bottom: 0px;
+	margin-left: 10px;
+	font-size: 1em;
+}
+.h4-title{
+	background: url(/images/bg-clip-left.png) no-repeat 10px 0px;
+	float: left;
+	padding-left: 10px;
+	border-bottom: 1px solid #9d9d9d;
+	width: 100%;
+}
+
 
 ul.page {
   margin: 0;
   padding-left: 0;
   li {
-    margin-bottom: 30px;
+		margin-bottom: 30px;
   }
   li.last, li li {
     margin-bottom: 0px;
@@ -300,13 +603,13 @@ ul.page {
   color: lighten($text-color, 15%);
   padding: 10px;
 }
-.notice, .alert {
+.two-cols .notice, .two-cols .alert, .two-cols #error_explanation{ margin: 20px 20px 0px;}
+.notice, .alert, #error_explanation{
   padding: 20px;
   margin-bottom: 15px;
-}
-.notice {
-  color: green;
-  border: 1px solid green;
+	background-color: #EAFFDE;
+  margin: 10px 0px 15px;
+  @include border-r(1px, #B1DE96, 5px);
 }
 .alert {
   color: red;
@@ -315,6 +618,10 @@ ul.page {
     margin: 0;
     padding-left: 0.8em;
   }
+}
+#error_explanation{
+	h2{ margin: 0px; font-size: 1.1em; font-weight: bold; color: red;}
+	ul{ margin: 0px;}
 }
 
 // ----------------------------------------------------------------------------
@@ -326,3 +633,5 @@ ul.page {
 .hidden {
   display: none;
 }
+
+

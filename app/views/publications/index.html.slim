@@ -1,21 +1,26 @@
-h2 = _('Publications')
-
-- if @publications.length == 0
-	= _('You have no publication.')
-- else
-	ul
-		- @publications.each do |p|
+.page-block
+	h2 = _('Publications')
+	
+	- if @publications.length == 0
+		= _('You have no publication.')
+	- else
+		ul.publications
+			- @publications.each do |p|
+				li
+					.cover
+							= image_tag('book-cover.png')
+					.item-detail
+						a href="#{publisher_publication_path p.publisher.id, p.id}" = p.title
+						= " (%s)" % p.author
+					
+		== paginate @publications
+	
+	- content_for :sidebar do
+		ul
 			li
-				a href="#{publisher_publication_path p.publisher.id, p.id}" = p.title
-				= " (%s)" % p.author
-	== paginate @publications
-
-- content_for :sidebar do
-	ul
-		li
-			- if @publications.empty?
-				a href="#{new_publisher_publication_path Publisher.find(params[:publisher_id])}"
-					= _('Create new publication')
-			- else
-				a href="#{new_publisher_publication_path @publications[0].publisher.id}"
-					= _('Create new publication')
+				- if @publications.empty?
+					a href="#{new_publisher_publication_path Publisher.find(params[:publisher_id])}"
+						= _('Create new publication')
+				- else
+					a.new_publication href="#{new_publisher_publication_path @publications[0].publisher.id}"
+						= _('Create new publication')

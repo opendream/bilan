@@ -1,137 +1,130 @@
-h2 = _('Publication details')
-
-p
-	label #{_('Title')}:
-	= @publication.title
-p
-	label #{_('Author')}:
-	= @publication.author
-p
-	label #{_('ISBN')}:
-	= @publication.get_isbn
-p
-	label #{_('CIP')}:
-	br
-	== BlueCloth.new(@publication.cip).to_html
-p
-	label #{_('Edition')}:
-	= @publication.edition
-p
-	label #{_('Published year')}:
-	= @publication.year
-p
-	label #{_('Page amount')}:
-	= @publication.page
-p
-	label #{_('Price')}:
-	= @publication.price
-p
-	label #{_('Copy amount')}:
-	= @publication.copy
-p
-	label #{_('Publication type')}:
-	- if @publication.publication_type == 9
-		= @publication.publication_type_other
-	- else
-		= @publication.get_publication_type_name
-p
-	label #{_('Estimated number of titles per year')}:
-	= @publication.title_per_year
-p
-	label #{_('Synopsis')}:
-	br
-	== BlueCloth.new(@publication.synopsis).to_html
-
-- if @publication.translated
+.page-block
+	h2 = _('Publication details')
+	
 	p
-		label #{_('Translated from')}:
-		= @publication.translated_from
+		label #{_('Title')}:
+		= @publication.title
 	p
-		label #{_('Original author')}:
-		= @publication.original_author
-
-fieldset.collapsible
-	legend = _('Publisher')
+		label #{_('Author')}:
+		= @publication.author
 	p
-		label #{_('Name')}:
-		= @publication.publisher_name
+		label #{_('ISBN')}:
+		= @publication.get_isbn
 	p
-		label #{_('Name (English)')}:
-		= @publication.publisher_name_en
+		label #{_('CIP')}:
+		br
+		== BlueCloth.new(@publication.cip).to_html
 	p
-		label #{_('Address')}:
-		= @publication.publisher_address
+		label #{_('Edition')}:
+		= @publication.edition
 	p
-		label #{_('Address (English)')}:
-		= @publication.publisher_address_en
+		label #{_('Published year')}:
+		= @publication.year
 	p
-		label #{_('Telephone')}:
-		= @publication.publisher_telephone
+		label #{_('Page amount')}:
+		= @publication.page
 	p
-		label #{_('Fax')}:
-		= @publication.publisher_fax
+		label #{_('Price')}:
+		= @publication.price
 	p
-		label #{_('Email')}:
-		= @publication.publisher_email
+		label #{_('Copy amount')}:
+		= @publication.copy
 	p
-		label #{_('Website')}:
-		= @publication.publisher_website
-
-fieldset.collapsible
-	legend = _('Press')
+		label #{_('Publication type')}:
+		- if @publication.publication_type == 9
+			= @publication.publication_type_other
+		- else
+			= @publication.get_publication_type_name
 	p
-		label #{_('Name')}:
-		= @publication.press_name
+		label #{_('Estimated number of titles per year')}:
+		= @publication.title_per_year
 	p
-		label #{_('Address')}:
-		= @publication.press_address
-	p
-		label #{_('Telephone')}:
-		= @publication.press_telephone
-	p
-		label #{_('Fax')}:
-		= @publication.press_fax
-	p
-		label #{_('Email')}:
-		= @publication.press_email
-	p
-		label #{_('Website')}:
-		= @publication.press_website
-
-fieldset.collapsible
-	legend = _('Distributer')
-	p
-		label #{_('Name')}:
-		= @publication.distributor_name
-	p
-		label #{_('Address')}:
-		= @publication.distributor_address
-	p
-		label #{_('Telephone')}:
-		= @publication.distributor_telephone
-	p
-		label #{_('Fax')}:
-		= @publication.distributor_fax
-	p
-		label #{_('Email')}:
-		= @publication.distributor_email
-	p
-		label #{_('Website')}:
-		= @publication.distributor_website
-
-- content_for :sidebar do
-	ul
-		li
-			a href="#{edit_publisher_publication_path}" = _('Edit')
-		li
-			a href="#{print_isbn_publisher_publication_path @publisher.id, @publication.id}" class="print isbn"
-				= _('Print ISBN request form')
-		li
-			a href="#{print_cip_publisher_publication_path @publisher.id, @publication.id}" class="print cip"
-				= _('Print CIP request form')
-		li
-			a href="#{export_isbn_publisher_publication_path @publisher.id, @publication.id}"
-				= _('Export ISBN request form')
-		li
-			a href="#{export_cip_publisher_publication_path @publisher.id, @publication.id}"
-				= _('Export CIP request form')
+		label #{_('Synopsis')}:
+		br
+		== BlueCloth.new(@publication.synopsis).to_html
+	
+	- if @publication.translated
+		p
+			label #{_('Translated from')}:
+			= @publication.translated_from
+		p
+			label #{_('Original author')}:
+			= @publication.original_author
+	
+	fieldset.collapsible
+		legend = _('Publisher')
+		p
+			label #{_('Name')}:
+			= @publication.publisher_name
+		p
+			label #{_('Name (English)')}:
+			= @publication.publisher_name_en
+		p
+			label #{_('Address')}:
+			= @publication.publisher_address
+		p
+			label #{_('Address (English)')}:
+			= @publication.publisher_address_en
+		p
+			label #{_('Telephone')}:
+			= @publication.publisher_telephone
+		p
+			label #{_('Fax')}:
+			= @publication.publisher_fax
+		p
+			label #{_('Email')}:
+			= @publication.publisher_email
+		p
+			label #{_('Website')}:
+			= @publication.publisher_website
+	
+	fieldset.collapsible
+		legend = _('Press')
+		p
+			label #{_('Name')}:
+			= @publication.press_name
+		p
+			label #{_('Address')}:
+			= @publication.press_address
+		p
+			label #{_('Telephone')}:
+			= @publication.press_telephone
+		p
+			label #{_('Fax')}:
+			= @publication.press_fax
+		p
+			label #{_('Email')}:
+			= @publication.press_email
+		p
+			label #{_('Website')}:
+			= @publication.press_website
+	
+	fieldset.collapsible
+		legend = _('Distributer')
+		p
+			label #{_('Name')}:
+			= @publication.distributor_name
+		p
+			label #{_('Address')}:
+			= @publication.distributor_address
+		p
+			label #{_('Telephone')}:
+			= @publication.distributor_telephone
+		p
+			label #{_('Fax')}:
+			= @publication.distributor_fax
+		p
+			label #{_('Email')}:
+			= @publication.distributor_email
+		p
+			label #{_('Website')}:
+			= @publication.distributor_website
+	
+	- content_for :sidebar do
+		ul.publication-sidebar
+			li
+				a href="#{edit_publisher_publication_path}" = _('Edit')
+			li
+				a href="#{export_isbn_publisher_publication_path @publisher.id, @publication.id}" = _('Export ISBN requested form')
+			li
+				a href="#{export_cip_publisher_publication_path @publisher.id, @publication.id}" = _('Export CIP requested form')

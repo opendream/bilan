@@ -1,70 +1,75 @@
-h2 = _('Publisher details')
-
-p
-	label #{_('Name')}:
-	= @publisher.name
-
-- unless @publisher.name_en.blank?
+.page-block
+	h2 = _('Publisher details')
+	
 	p
-		label #{_('Name (English)')}:
-		= @publisher.name_en
-
-- unless @publisher.address.blank?
-	p
-		label #{_('Address')}:
-		= @publisher.address
-
-- unless @publisher.address_en.blank?
-	p
-		label #{_('Address (English)')}:
-		= @publisher.address_en
-
-- unless @publisher.telephone.blank?
-	p
-		label #{_('Telephone')}:
-		= @publisher.telephone
-
-- unless @publisher.fax.blank?
-	p
-		label #{_('Fax')}:
-		= @publisher.fax
-
-- unless @publisher.email.blank?
-	p
-		label #{_('Email')}:
-		= @publisher.email
-
-- unless @publisher.website.blank?
-	p
-		label #{_('Website')}:
-		a href=@publisher.website = @publisher.website
-
-- unless @publisher.facebook.blank?
-	p
-		label #{_('Facebook')}:
-		a href=@publisher.facebook = @publisher.facebook
-
-- unless @publisher.twitter.blank?
-	p
-		label #{_('Twitter')}:
-		a href=@publisher.twitter = @publisher.twitter
-
-.child-items
-	h3 = _('Publications')
-	- if @publisher.publications.size > 0
-		ul
-			- @publisher.publications.order('created_at DESC').limit(15).each do |p|
-				li
-					a href="#{publisher_publication_path @publisher.id, p.id}" = p.title
-					= ' (%s)' % p.author
-		- if @publisher.publications.size > 1
-			= link_to(more_link_text, publisher_publications_path(@publisher))
-	- else
-		= _('You have no publication.')
-
-- content_for :sidebar do
-	ul
-		li
-			a href="#{edit_publisher_path}" = _('Edit publisher')
-		li
-			a href="#{new_publisher_publication_path @publisher.id}" = _('Create new publication')
+		label #{_('Name')}:
+		= @publisher.name
+	
+	- unless @publisher.name_en.blank?
+		p
+			label #{_('Name (English)')}:
+			= @publisher.name_en
+	
+	- unless @publisher.address.blank?
+		p
+			label #{_('Address')}:
+			= @publisher.address
+	
+	- unless @publisher.address_en.blank?
+		p
+			label #{_('Address (English)')}:
+			= @publisher.address_en
+	
+	- unless @publisher.telephone.blank?
+		p
+			label #{_('Telephone')}:
+			= @publisher.telephone
+	
+	- unless @publisher.fax.blank?
+		p
+			label #{_('Fax')}:
+			= @publisher.fax
+	
+	- unless @publisher.email.blank?
+		p
+			label #{_('Email')}:
+			= @publisher.email
+	
+	- unless @publisher.website.blank?
+		p
+			label #{_('Website')}:
+			a href=@publisher.website = @publisher.website
+	
+	- unless @publisher.facebook.blank?
+		p
+			label #{_('Facebook')}:
+			a href=@publisher.facebook = @publisher.facebook
+	
+	- unless @publisher.twitter.blank?
+		p
+			label #{_('Twitter')}:
+			a href=@publisher.twitter =  @publisher.twitter
+	
+	.child-items
+		h3 = _('Publications')
+		- if @publisher.publications.size > 0
+			ul.publications
+				- @publisher.publications.order('created_at DESC').limit(15).each do |p|
+					li
+						.cover
+							= image_tag('book-cover.png')
+						.item-detail
+							a href="#{publisher_publication_path @publisher.id, p.id}" = p.title
+							= ' (%s)' % p.author
+						
+			- if @publisher.publications.size > 1
+				= link_to(more_link_text, publisher_publications_path(@publisher))
+		- else
+			= _('You have no publication.')
+	
+	- content_for :sidebar do
+		ul.edit
+			li
+				a.edit_publisher href="#{edit_publisher_path}" = _('Edit publisher')
+			li
+				a.new_publication href="#{new_publisher_publication_path @publisher.id}" = _('Create new publication')
