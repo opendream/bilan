@@ -75,22 +75,23 @@ html
 							= _('ISBN') + ':'
 						span.content
 							= get_isbn
-					li
-						span.label
-							= _('Synopsis') + ':'
-						span.content
-							== BlueCloth.new(synopsis).to_html
+					- unless synopsis.empty?
+						li
+							span.label
+								= _('Synopsis') + ':'
+							span.content
+								== BlueCloth.new(synopsis).to_html
 					- if translated
 						li
 							span.label
 								= _('Translated from') + ':'
 							span.content
-								= year
+								= translated_from
 							.clear
 							span.label
 								= _('Original author') + ':'
 							span.content
-								= year
+								= original_author
 			#remark
 				span.h3 = _('Remark')
 				ul
