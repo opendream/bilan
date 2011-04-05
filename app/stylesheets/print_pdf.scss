@@ -3,14 +3,16 @@
 @font-face {
 	font-family: THSarabun;
   src: url("Dir.pwd/public/fonts/thsarabun.eot");
-  src: url("Dir.pwd/public/fonts/thsarabun.woff") format("woff"),
+  src: url("Dir.pwd/public/fonts/thsarabun.eot?iefix") format("eot"),
+       url("Dir.pwd/public/fonts/thsarabun.woff") format("woff"),
        url("Dir.pwd/public/fonts/thsarabun.ttf") format("truetype");
 }
 
 @font-face {
 	font-family: THSarabunBold;
   src: url("Dir.pwd/public/fonts/thsarabun-bold.eot");
-  src: url("Dir.pwd/public/fonts/thsarabun-bold.woff") format("woff"),
+  src: url("Dir.pwd/public/fonts/thsarabun-bold.eot?iefix") format("eot"),
+       url("Dir.pwd/public/fonts/thsarabun-bold.woff") format("woff"),
        url("Dir.pwd/public/fonts/thsarabun-bold.ttf") format("truetype");
 }
 
