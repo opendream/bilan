@@ -1,8 +1,11 @@
 module ApplicationHelper
   def breadcrumbs
-    separator = " &raquo; "
+    separator = " <span class=\"cls-separator\">&raquo;</span> "
     breadcrumbs = []
-    breadcrumbs.push(link_to(_('Dashboard'), user_root_path))
+    item = '<span class="dashboard">'.html_safe <<
+           link_to(_('Dashboard'), user_root_path) <<
+           '</span>'.html_safe
+    breadcrumbs.push(item)
 
     i18n_words = {
       'publishers' => _('Publishers'),
@@ -22,11 +25,13 @@ module ApplicationHelper
       if i % 2 == 0 # as RESTful, it may be a model name
         if elements[i] == elements.last
           item = i18n_words.fetch(elements[i]) rescue elements[i].camelize
+          css_cls = 'active'
         else
           text = i18n_words.fetch(elements[i].pluralize) rescue elements[i].pluralize.camelize
           item = link_to(text, links)
+          css_cls = 'cls-link'
         end
-        breadcrumbs.push(item)
+        item = "<span class=\"#{css_cls}\">".html_safe << item << "</span>".html_safe
       else
         begin
           elm_name = elements[i - 1].singularize.camelize.constantize.find(elements[i]).name
@@ -36,14 +41,19 @@ module ApplicationHelper
             else
               item = elm_name
             end
+            css_cls = 'active'
           else
             item = link_to(elm_name, links)
+            css_cls = 'obj-link'
           end
-          breadcrumbs.push(breadcrumbs.pop + ': ' + item)
+          item = "<span class=\"#{css_cls}\">".html_safe << item << "</span>".html_safe
+          item = breadcrumbs.pop << '<span class="obj-separator">:</span> '.html_safe << item
         rescue
-          breadcrumbs.push(i18n_words.fetch(elements[i]))
+          item = i18n_words.fetch(elements[i])
+          item = '<span class="cls-link">'.html_safe << item << '</span>'.html_safe
         end
       end
+      breadcrumbs.push(item)
     end
     render :inline => breadcrumbs.join(separator)
   end
