@@ -1,6 +1,9 @@
 class Publication < ActiveRecord::Base
   belongs_to :publisher
 
+  has_many :assets, :as => :attachable, :dependent => :destroy
+  accepts_nested_attributes_for :assets
+
   before_update :save_isbn
   after_save :save_press, :save_distributor
 

@@ -21,9 +21,11 @@ class PublishersController < ApplicationController
 
   def new
     @publisher = Publisher.new
+    @publisher.assets.build
   end
 
   def edit
+    @publisher.assets.build
   end
 
   def show

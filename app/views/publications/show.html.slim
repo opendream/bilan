@@ -1,6 +1,9 @@
 .page-block
 	h2 = _('Publication details')
 	
+	- unless @publication.assets.empty?
+		p.cover
+			= image_tag @publication.assets[0].attachment.url(:small)
 	p
 		label #{_('Title')}:
 		= @publication.title

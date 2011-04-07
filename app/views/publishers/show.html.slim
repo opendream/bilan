@@ -1,6 +1,9 @@
 .page-block
 	h2 = _('Publisher details')
-	
+
+	- unless @publisher.assets.empty?
+		p.logo
+			= image_tag @publisher.assets[0].attachment.url(:small)
 	p
 		label #{_('Name')}:
 		= @publisher.name

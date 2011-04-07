@@ -36,9 +36,12 @@ class PublicationsController < ApplicationController
     @publication.publisher_fax = @publisher.fax
     @publication.publisher_email = @publisher.email
     @publication.publisher_website = @publisher.website
+
+    @publication.assets.build
   end
 
   def edit
+    @publication.assets.build
   end
 
   def show
