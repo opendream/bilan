@@ -11,6 +11,7 @@ gem 'devise'
 gem 'gettext', '>=1.9.3', :require => false, :group => :development
 gem 'gettext_i18n_rails'
 gem 'kaminari'
+gem 'paperclip', '~> 2.3'
 gem 'pdfkit'
 gem 'pg'
 gem 'rails3-jquery-autocomplete'
