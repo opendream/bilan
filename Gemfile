@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.5'
+gem 'rails', '3.0.6'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -8,7 +8,7 @@ gem 'rails', '3.0.5'
 gem 'bluecloth'
 gem 'compass', '>= 0.10.6'
 gem 'devise'
-gem 'gettext', '>=1.9.3', :require => false, :group => :development
+gem 'gettext', '>= 1.9.3', :require => false, :group => :development
 gem 'gettext_i18n_rails'
 gem 'kaminari'
 gem 'paperclip', '~> 2.3'
