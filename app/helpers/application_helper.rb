@@ -34,7 +34,7 @@ module ApplicationHelper
         item = "<span class=\"#{css_cls}\">".html_safe << item << "</span>".html_safe
       else
         begin
-          elm_name = elements[i - 1].singularize.camelize.constantize.find(elements[i]).name
+          elm_name = elements[i - 1].classify.constantize.find(elements[i]).name
           if i == elements.size - 1 # last member of the Array
             if @access_denied
               item = _('Access denied')
@@ -50,7 +50,7 @@ module ApplicationHelper
           item = breadcrumbs.pop << '<span class="obj-separator">:</span> '.html_safe << item
         rescue
           item = i18n_words.fetch(elements[i])
-          item = '<span class="cls-link">'.html_safe << item << '</span>'.html_safe
+          item = '<span class="active">'.html_safe << item << '</span>'.html_safe
         end
       end
       breadcrumbs.push(item)
