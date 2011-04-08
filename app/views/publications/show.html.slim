@@ -124,18 +124,18 @@
 			= @publication.distributor_website
 	
 	- content_for :sidebar do
-		ul.publication-sidebar
-			li
+		ul
+			li.edit-publication
 				a href="#{edit_publisher_publication_path}" = _('Edit')
-			li
+			li.print-isbn
 				a href="#{print_isbn_publisher_publication_path @publisher.id, @publication.id}" class="print"
 					= _('Print ISBN request form')
-			li
+			li.print-cip
 				a href="#{print_cip_publisher_publication_path @publisher.id, @publication.id}" class="print"
 					= _('Print CIP request form')
-			li
+			li.export-isbn
 				a href="#{export_isbn_publisher_publication_path @publisher.id, @publication.id}"
 					= _('Export ISBN request form')
-			li
+			li.export-cip
 				a href="#{export_cip_publisher_publication_path @publisher.id, @publication.id}"
 					= _('Export CIP request form')

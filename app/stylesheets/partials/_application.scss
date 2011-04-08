@@ -133,10 +133,10 @@ form {
   input, textarea {
     font-family: sans-serif;
     @include round(5px);
-    &:focus{ background-color: #d2f6ca;}
+    &:focus{ background: #f5fdff url('/images/bg-textbox.png') repeat-x;}
   }
   input[type=text], input[type=password], textarea {
-    border: 1px solid #ccc;
+    border: 1px solid #b9ccd1;
     width: 350px;
     padding: 10px;
     font-size: 1em;
@@ -304,7 +304,7 @@ body {
   background-color: $header-bgcolor;
 }
 #content-wrapper {
-  padding: 20px 0;
+  padding: 20px 0px;
   background: url('/images/bg_content.png') ;
   #banner{
 	  @include bg-image('banner-step-to-isbn.png', 950px, 305px);
@@ -321,6 +321,7 @@ body {
 	  margin-top: 20px;
 	  text-indent: 0em;
 	  padding: 70px 0px 0px;
+	  cursor: default;
 	  p{ margin: 0px;}
 	  .requset-button{
 		  @include bg-image('btn-requset-isbn.png', 220px, 33px);
@@ -329,7 +330,6 @@ body {
 		  right: 7px;
 		  &:hover{ background-position: 0px -33px;}
 	  }
-	  span{ padding: 0px 10px; @include link;}
   }
 }
 #header, #footer {
@@ -363,10 +363,15 @@ body {
     }
   }
 }
-#about-wrapper{
-	background-color: $about-bgcolor;
-	.about{ padding: 20px 0px 0px;}
+
+.about-block{
+	padding: 20px;
+	margin-top: 20px;
+	background-color: #fff;
+	border: 1px solid #eaeaea;
+	@include border-r(1px, #eaeaea, 5px);
 }
+
 #footer {
   color: #4b4a4a;
   padding: 20px 0px 10px;
@@ -387,8 +392,19 @@ body {
   }
 }
 
+/* 8c0f49 tuxk*/
+
 #breadcrumb {
   margin-bottom: 20px;
+  .dashboard{}
+  .cls-separator{ color: #cfcfcf;}
+  .obj-separator{}
+  .active{
+	  font-size: 0.9em;
+	  @include border-r(0px, #8c0f49,5px);
+	  background-color: #8c0f49;
+	  padding: 5px 5px 3px 5px;
+  }
 }
 
 .one-col {
@@ -403,7 +419,7 @@ body {
   #content {
 /*     $content-columns: ceil(3 * $blueprint-grid-columns / 4); */
 /*     @include column($content-columns); */
-    @include border-r(1px, #cfcfcf, 5px);
+    @include border-r(1px, #eaeaea, 5px);
     background-color: #fff;
     float: left;
     width: 690px;
@@ -434,7 +450,7 @@ body {
   #sidebar {
 /*     $sidebar-columns: floor($blueprint-grid-columns / 4); */
 /*     @include column($sidebar-columns, true); */
-    @include border-r(1px, #cfcfcf, 5px);
+    @include border-r(1px, #eaeaea, 5px);
     background-color: #fff;
     padding: 20px 10px;
     float: left;
@@ -451,7 +467,9 @@ body {
       padding: 0;
       list-style: none;
     }
-    .new_publication, .edit_publisher{
+    .new_publication, .edit_publisher, .edit-publication a, 
+    .print-isbn a, .print-cip a,
+    .export-isbn a, .export-cip a{
 	    @include bg-image('btn-add-publisher.png', 202px, 48px);
 	    background-position: 0px -96px;
 	    margin: 0px 0px 10px 3px;
@@ -461,17 +479,26 @@ body {
 	    background-position: 0px -192px;
 	    &:hover{ background-position: 0px -240px;}
     }
-    .publication-sidebar{
-	    li{margin: 0px 0px 10px 0px;}
-	    a{
-		    @include button(#efefef, #cfcfcf);
-		    font-size: 0.9em;
-		    display: block;
-		    width: 195px;
-		    text-align: center;
-		    &:hover{ background-color: #eaeaea; color: #909090; text-decoration: none;}
-	    }
-    }
+		.edit-publication a{
+			background-position: 0px -288px;
+			&:hover{ background-position: 0px -336px;}
+		}
+		.print-isbn a{
+			background-position: 0px -384px;
+			&:hover{ background-position: 0px -432px;}
+		}
+		.print-cip a{
+			background-position: 0px -480px;
+			&:hover{ background-position: 0px -528px;}
+		}
+		.export-isbn a{
+			background-position: 0px -576px;
+			&:hover{ background-position: 0px -624px;}
+		}
+		.export-cip a{
+			background-position: 0px -672px;
+			&:hover{ background-position: 0px -720px;}
+		}
   }
 }
 
@@ -491,7 +518,7 @@ body {
 	#completed, #completed_items .info{ width: 620px !important;}
 	#cip_queue_items li{ margin-bottom: 10px;}
 	
-	.info{ float: left;
+	.info{ float: left; width: 300px;
 		li{
 			padding-left: 100px;
 			margin: 0px !important;
@@ -633,5 +660,29 @@ ul.page {
 .hidden {
   display: none;
 }
+span.link{ padding: 0px 5px;}
 
+
+/* form download */
+.fancybox-ie6 #fancybox-close {
+	background: url(/images/fancybox.png) repeat -40px 0px;
+	background-color: none;
+}
+
+div#fancybox-content div.resizable-textarea textarea.resizable{
+    width: 390px;
+    @include border-bottom(0px);
+}
+div#fancybox-content div.grippie{ width: 400px !important;}
+#fancybox-wrap{ width: 455px !important;}
+#fancybox-content{
+	border: none !important;
+	padding: 20px;
+	width: 420px !important;
+}
+#fancybox-content > div{ overflow: hidden !important;}
+#form_update_cip {
+    width: 420px;
+}
+h4.center{ line-height: 28px;}
 

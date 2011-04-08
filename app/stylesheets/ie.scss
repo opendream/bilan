@@ -15,15 +15,15 @@ body {
      text-align: left
 }*/
 
-body {
-/*   @include blueprint-ie(true); */
-}
-
+/* page block wrapper */
 * html .two-cols #content .page-block{ width: 610px !important;}
+/* menu */
 * html #navigations{ margin-top: -30px !important;}
 *:first-child+html #navigations{ margin-top: -30px !important; padding-bottom: 20px;}
+/* block isbn_queue cip_queue on dashboard */
 * html #isbn_queue, #cip_queue{ width: 295px;}
 * html .publications li{ width: 610px;}
+/* input textarea on ie6 */
 * html input, * html textarea{
 	border: 1px solid #CCCCCC;
   font-size: 1em;
@@ -32,6 +32,7 @@ body {
   vertical-align:  text-bottom;
 }
 *:first-child+html .collapsible,* html .collapsible{  background-color: #fff;}
+/* pencil list on publishers-list */
 * html .publishers-list a{
 	background: url('/images/icon.png') no-repeat 0px -16px;
 	height: 16px;
@@ -43,4 +44,9 @@ body {
 * html .publishers-list a:hover,
 *:first-child+html .publishers-list a:hover{
 	background-position: 0px 1px;
+}
+
+* html #fancybox-close{
+/* 	background: url("fancybox.png") repeat scroll -40px 0 transparent; */
+background-color: blue;
 }
