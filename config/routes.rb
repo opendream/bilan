@@ -50,10 +50,6 @@ Bilan::Application.routes.draw do
 
   match 'dashboard' => 'user#dashboard', :as => 'user_root'
 
-  namespace 'admin' do
-    resource :posts
-  end
-
   resources :bibliographies
   resources :publishers do
     resources :publications do
@@ -76,6 +72,15 @@ Bilan::Application.routes.draw do
   end
   resources :distributors do
     get 'remote_find_by_name', :on => :collection
+  end
+
+  # Static pages
+  match 'pages' => redirect('/')
+  match 'pages/:slug' => 'admin/pages#show'
+
+  # Administrator
+  namespace :admin do
+    resources :pages
   end
 
   # You can have the root of your site routed with "root"

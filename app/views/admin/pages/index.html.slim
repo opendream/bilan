@@ -1,0 +1,11 @@
+h2 = _('Page')
+
+ul
+	- @pages.each do |p|
+		li
+			= link_to(p.title, '/pages/%s' % p.slug)
+
+- content_for :sidebar do
+	ul
+		li
+			= link_to(_('Create new page'), new_admin_page_path)

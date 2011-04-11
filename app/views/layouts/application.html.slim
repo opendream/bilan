@@ -2,7 +2,7 @@
 html
 	head
 		meta http-equiv="Content-Type" content="text/html; charset=utf-8"
-		title Thai National Bibliography
+		title = _('Thai National Bibliography')
 		= csrf_meta_tag
 		= javascript_include_tag 'jquery.js'
 		= javascript_include_tag 'jquery-ui.js'
@@ -16,7 +16,6 @@ html
 		= stylesheet_link_tag 'ui-lightness/jquery-ui.css', :media => 'screen, projection'
 		= stylesheet_link_tag 'compiled/screen.css', :media => 'screen, projection'
 		= stylesheet_link_tag 'compiled/print.css', :media => 'print'
-		= stylesheet_link_tag 'compiled/ie.css', :media => 'screen, projection'
 		/[if lt IE 8]
 			= stylesheet_link_tag 'compiled/ie.css', :media => 'screen, projection'
 
@@ -29,9 +28,9 @@ html
 						#user-ribbon
 							== render :partial => 'shared/user_ribbon'
 						ul#navigations
-								li.home = link_to(_('Home'), '#')
+								li.home = link_to(_('Home'), '/')
 								li.member = link_to(_('Member'), '#')
-								li.about = link_to(_('About'), '#')
+								li.about = link_to(_('About'), '/pages/about') 
 
 			#content-wrapper
 				.container
@@ -47,7 +46,7 @@ html
 			.container
 				#footer
 					ul#footer-menu
-						li.home = link_to(_('Home'), '#')
+						li.home = link_to(_('Home'), '/')
 						li.member = link_to(_('Member'), '#')
-						li.about = link_to(_('About'), '#')
+						li.about = link_to(_('About'), '/pages/about')
 					#nstda

@@ -58,7 +58,7 @@ class PublishersController < ApplicationController
   def authorize_user!
     if @publisher.owner != current_user
       @access_denied = true
-      render :template => 'shared/403'
+      render :template => 'shared/403', :status => 403
     end
   end
 

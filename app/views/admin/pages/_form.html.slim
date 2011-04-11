@@ -1,0 +1,27 @@
+= form_for(page, :url => action_url) do |f|
+	p
+		= f.label :slug, _('Slug')
+		span.required *
+		br
+		= f.text_field :slug
+	p
+		= f.label :title, _('Title')
+		span.required *
+		br
+		= f.text_field :title
+	p
+		= f.label :body, _('Body')
+		span.required *
+		br
+		= f.text_area :body, :class => 'resizable'
+	p
+		= f.check_box :published
+		= ' '
+		= f.label :published, _('Published')
+	p
+		= f.submit
+		= ' ' + _('or') + ' '
+		- if page.id.nil?
+			= link_to(_('Cancel'), admin_pages_path)
+		- else
+			= link_to(_('Cancel'), '/pages/%s' % page.slug)
