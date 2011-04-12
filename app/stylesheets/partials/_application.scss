@@ -108,7 +108,7 @@ $tab-active-bgcolor: $content-bgcolor;
   -moz-border-radius-topright: $r;
 }
 @mixin button($bg-color, $border-color){
-  padding: 5px;
+  padding: 5px 10px;
   font-size: 1em;
   background: none;
   border: none;
@@ -133,7 +133,7 @@ form {
   input, textarea {
     font-family: sans-serif;
     @include round(5px);
-    &:focus{ background: #f5fdff url('/images/bg-textbox.png') repeat-x;}
+    &:focus{ background: #f5fdff url('/images/bg-textbox.png') repeat-x; outline: none;}
   }
   input[type=text], input[type=password], textarea {
     border: 1px solid #b9ccd1;
@@ -160,10 +160,11 @@ form {
   div.resizable-textarea {
     display: block;
     textarea.resizable {
-      width: 98%;
+      width: 627px;
       height: 80px;
       display: block;
       margin-bottom: 0;
+      @include border-bottom(0px);
     }
     div.grippie {
       background: #eee url('/images/grippie.png') no-repeat scroll 50% 50%;
@@ -171,7 +172,7 @@ form {
       border-style: solid;
       border-width: 0 1px 1px 1px;
       cursor: s-resize;
-      width: 98%;
+      width: 637px;
       height: 9px;
       padding: 0 5px;
       overflow: hidden;
@@ -392,8 +393,6 @@ body {
   }
 }
 
-/* 8c0f49 tuxk*/
-
 #breadcrumb {
   margin-bottom: 20px;
   .dashboard{}
@@ -586,10 +585,10 @@ body {
 	padding: 0px;
 	li{ margin-bottom: 10px;}
   a{
-    background: url('/images/icon.png') no-repeat 0px -17px;	
+    background: url('/images/ic-publishers-list.png') no-repeat 0px -17px;	
     padding: 0px 0px 0px 25px;
     height: 20px;
-    &:hover{ background-position: 0px 0px;}
+    &:hover{ background-position: 0px 1px;}
   }
 }
 
@@ -663,7 +662,7 @@ ul.page {
 span.link{ padding: 0px 5px;}
 
 
-/* form download */
+/* form fancybox */
 .fancybox-ie6 #fancybox-close {
 	background: url(/images/fancybox.png) repeat -40px 0px;
 	background-color: none;
@@ -685,4 +684,16 @@ div#fancybox-content div.grippie{ width: 400px !important;}
     width: 420px;
 }
 h4.center{ line-height: 28px;}
+#fancybox-title-float-wrap{ display: none;}
+#form_update_isbn #isbn{ width: 320px;}
+
+/* field set*/
+.collapsible-publisher{
+	  input, textarea {
+    &:focus{
+	    background: none;
+	    background-color: #EEEEEE ;
+     }
+  }
+}
 
