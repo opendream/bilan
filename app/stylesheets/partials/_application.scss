@@ -146,7 +146,7 @@ form {
     background-color: #eee;
     color: lighten($text-dark-color, 25%);
   }
-  input#user_submit, input#publisher_submit, #publication_submit{
+  input#user_submit, input#publisher_submit, #publication_submit, #page_submit{
 	  @include button(#19BAE3, #137e9a);
 	  &:hover{ background-color: #1a8aa7;}
   }
@@ -467,8 +467,8 @@ body {
       list-style: none;
     }
     .new_publication, .edit_publisher, .edit-publication a, 
-    .print-isbn a, .print-cip a,
-    .export-isbn a, .export-cip a{
+    .print-isbn a, .print-cip a, .export-isbn a, .export-cip a, 
+    .new-page a, .edit-page a, .all-page a{
 	    @include bg-image('btn-add-publisher.png', 202px, 48px);
 	    background-position: 0px -96px;
 	    margin: 0px 0px 10px 3px;
@@ -497,6 +497,18 @@ body {
 		.export-cip a{
 			background-position: 0px -672px;
 			&:hover{ background-position: 0px -720px;}
+		}
+		.new-page a{
+			background-position: 0px -768px;
+			&:hover{ background-position: 0px -816px;}
+		}
+		.edit-page a{
+			background-position: 0px -864px;
+			&:hover{ background-position: 0px -912px;}
+		}
+		.all-page a{
+			background-position: 0px -960px;
+			&:hover{ background-position: 0px -1008px;}
 		}
   }
 }
@@ -648,6 +660,11 @@ ul.page {
 #error_explanation{
 	h2{ margin: 0px; font-size: 1.1em; font-weight: bold; color: red;}
 	ul{ margin: 0px;}
+}
+.page-block{
+	.notice, .alert{
+		margin: 0 20px 20px;
+	}
 }
 
 // ----------------------------------------------------------------------------

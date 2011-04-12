@@ -38,8 +38,9 @@ html
 						#content
 							#breadcrumb
 								= breadcrumbs
-							== render :partial => 'shared/flash_message'
-							= yield
+							.page-block
+								== render :partial => 'shared/flash_message'
+								= yield
 						#sidebar
 							= yield :sidebar
 

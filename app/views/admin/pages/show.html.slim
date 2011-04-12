@@ -5,7 +5,7 @@
 
 - content_for :sidebar do
 	ul
-		li
+		li.edit-page
 			= link_to(_('Edit'), edit_admin_page_path(@page.id))
-		li
+		li.all-page
 			= link_to(_('All pages'), admin_pages_path)

@@ -1,14 +1,13 @@
-.page-block
-	h2 = _('My Publishers')
-	- if @publishers.size > 0
-		ul.publishers-list
-			- @publishers.each do |publisher|
-				li
-					a href="#{publisher_path publisher.id}" = publisher.name
-	- else
-		= _('You have no publisher.')
-	
-	- content_for :sidebar do
-		ul
-			li.create-publisher
-				a href="#{new_publisher_path}" = _('Create publisher')
+h2 = _('My Publishers')
+- if @publishers.size > 0
+	ul.publishers-list
+		- @publishers.each do |publisher|
+			li
+				a href="#{publisher_path publisher.id}" = publisher.name
+- else
+	= _('You have no publisher.')
+
+- content_for :sidebar do
+	ul
+		li.create-publisher
+			a href="#{new_publisher_path}" = _('Create publisher')
