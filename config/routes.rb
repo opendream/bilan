@@ -79,6 +79,7 @@ Bilan::Application.routes.draw do
   match 'pages/:slug' => 'admin/pages#show'
 
   # Administrator
+  match 'admin' => 'admin/dashboard#index'
   namespace :admin do
     resources :pages
   end

@@ -1,0 +1,8 @@
+h2 = _('Administrator')
+p
+	| use navigations at the sidebar.
+
+- content_for :sidebar do
+	ul
+		li
+			= link_to(_('Page'), admin_pages_path)
