@@ -103,7 +103,7 @@ class PublicationsController < ApplicationController
       redirect_to publisher_path @publisher.id
     elsif @publication && @publication.publisher != @publisher
       @access_denied = true
-      render :template => 'shared/403'
+      render :template => 'shared/403', :status => 403
     end
   end
 

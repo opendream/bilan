@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110407071755) do
+ActiveRecord::Schema.define(:version => 20110411043124) do
 
   create_table "assets", :force => true do |t|
     t.string   "attachment_file_name"
@@ -37,6 +37,18 @@ ActiveRecord::Schema.define(:version => 20110407071755) do
   end
 
   add_index "distributors", ["name"], :name => "index_distributors_on_name"
+
+  create_table "pages", :force => true do |t|
+    t.string   "slug"
+    t.string   "title"
+    t.text     "body"
+    t.boolean  "published",  :default => true
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "pages", ["slug"], :name => "index_pages_on_slug"
 
   create_table "presses", :force => true do |t|
     t.string   "name"

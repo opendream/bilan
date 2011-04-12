@@ -49,7 +49,19 @@ module ApplicationHelper
           item = "<span class=\"#{css_cls}\">".html_safe << item << "</span>".html_safe
           item = breadcrumbs.pop << '<span class="obj-separator">:</span> '.html_safe << item
         rescue
-          item = i18n_words.fetch(elements[i])
+          begin
+            # Case: new
+            item = i18n_words.fetch(elements[i])
+          rescue
+            # Static pages
+            if @page_not_found
+              item = _('Page not found')
+            else
+              item = elements[i].camelize
+            end
+            breadcrumbs.pop # remove 'Pages'
+            #breadcrumbs.pop # remove 'Dashboard'
+          end
           item = '<span class="active">'.html_safe << item << '</span>'.html_safe
         end
       end
