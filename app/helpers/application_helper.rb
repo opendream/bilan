@@ -18,8 +18,25 @@ module ApplicationHelper
     elements = request.url.split('/')[3..-1] # exclude PROTOCOL, HOST, PORT
     elements.delete('dashboard') # exclude 'dashboard'
     if elements.size > 0
-      elements[elements.size - 1] = elements.last.split('?')[0] # remove GET params
+      elements[elements.size - 1] = elements.last.split('?').first # remove GET params
     end
+  
+    # for Administrator
+    if elements.size > 0 && elements.first == 'admin'
+      if elements.size == 1
+        css_cls = 'active'
+        item = 'Administrator'
+      else
+        css_cls = 'cls_link'
+        item = link_to('Administrator', '/admin')
+      end
+      item = "<span class=\"#{css_cls}\">".html_safe << item << "</span>".html_safe
+      breadcrumbs.push(item)
+      elements.delete_at(0)
+
+      links += 'admin/'
+    end
+
     for i in 0...elements.size
       links += elements[i] + '/'
       if i % 2 == 0 # as RESTful, it may be a model name
@@ -59,14 +76,17 @@ module ApplicationHelper
             else
               item = elements[i].camelize
             end
-            breadcrumbs.pop # remove 'Pages'
-            #breadcrumbs.pop # remove 'Dashboard'
+            # Remove 'Pages'
+            if elements[i-1] == 'pages'
+              breadcrumbs.pop
+            end
           end
           item = '<span class="active">'.html_safe << item << '</span>'.html_safe
         end
       end
       breadcrumbs.push(item)
-    end
+    end # FOR
+
     render :inline => breadcrumbs.join(separator)
   end
 

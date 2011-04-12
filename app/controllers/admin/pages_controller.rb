@@ -23,13 +23,17 @@ class Admin::PagesController < ApplicationController
   end
 
   def show
-    page = Page.where(:slug => params[:slug])
-    if page.size > 0
-      @page = page.first
-      render :template => 'admin/pages/show'
+    if params[:id]
+      @page = Page.find(params[:id])
     else
-      @page_not_found = true
-      render :template => 'shared/404', :status => 404
+      page = Page.where(:slug => params[:slug])
+      if page.size > 0
+        @page = page.first
+        render :template => 'admin/pages/show'
+      else
+        @page_not_found = true
+        render :template => 'shared/404', :status => 404
+      end
     end
   end
 

@@ -4,6 +4,9 @@
 		span.required *
 		br
 		= f.text_field :slug
+		br
+		span.help
+			= _("Short label of this page, represented in a URL.")
 	p
 		= f.label :title, _('Title')
 		span.required *
