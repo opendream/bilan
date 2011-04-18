@@ -1,6 +1,8 @@
 class Admin::PagesController < ApplicationController
-  before_filter :authenticate_user!
+  before_filter :authenticate_user!, :except => :show
   before_filter :get_page, :only => [:edit, :update, :destroy]
+
+  load_and_authorize_resource
 
   def index
     @pages = Page.all

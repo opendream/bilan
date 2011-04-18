@@ -24,9 +24,10 @@ html
 
 			#content-wrapper
 				.container
-					#content
-						== render :partial => 'shared/flash_message'
-						= yield
+					.one-col
+						#content
+							== render :partial => 'shared/flash_message'
+							= yield
 
 			.container
 				#footer
@@ -35,3 +36,4 @@ html
 						li.member = link_to(_('Member'), '#')
 						li.about = link_to(_('About'), '/pages/about')
 					#nstda
+						= link_to('NSTDA', 'http://nstda.or.th')

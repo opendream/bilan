@@ -6,6 +6,7 @@ gem 'rails', '3.0.6'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'bluecloth'
+gem 'cancan'
 gem 'compass', '>= 0.10.6'
 gem 'devise'
 gem 'gettext', '>= 1.9.3', :require => false, :group => :development

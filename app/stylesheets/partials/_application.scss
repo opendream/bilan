@@ -1,6 +1,5 @@
-$bgcolor: #abc;
+$bgcolor: #fff;
 $header-bgcolor: #fff;
-$about-bgcolor: #fff;
 $content-bgcolor: #f6f;
 $footer-bgcolor: #E5E5E5;
 
@@ -11,9 +10,6 @@ $text-light-color: #eee;
 $link-color: #0086A8;
 $link-dark-color: $link-color;
 $link-light-color: #ccc;
-
-$tab-bgcolor: $bgcolor;
-$tab-active-bgcolor: $content-bgcolor;
 
 // -----------------------------------------------------------------------------
 
@@ -46,36 +42,13 @@ $tab-active-bgcolor: $content-bgcolor;
   }
 }
 
-@mixin tab-list {
-  @include link($link-light-color);
-  ul {
-    list-style-type: none;
-    overflow: hidden;
-    margin: 0;
-    padding: 0;
-  }
-  li {
-    display: block;
-    float: left;
-    background-color: $tab-bgcolor;
-    padding: 5px 10px;
-    margin-right: 3px;
-    &.last {
-      margin-right: 0px;
-    }
-    &.active {
-      @include link($text-color); 
-      background-color: $tab-active-bgcolor;
-    }
-  }
-}
-
 @mixin round($r) {
   border-radius: $r;
   -moz-border-radius: $r;
   -webkit-border-radius: $r;
 }
-@mixin border-r($px, $color, $r){
+
+@mixin border-r($px, $color, $r) {
   border-radius: $r;
   -moz-border-radius: $r;
   -webkit-border-radius: $r;
@@ -95,19 +68,22 @@ $tab-active-bgcolor: $content-bgcolor;
   cursor: pointer;
   overflow: hidden;
 }
+
 @mixin border-bottom($r) {
   -webkit-border-bottom-left-radius: $r;
   -webkit-border-bottom-right-radius: $r;
   -moz-border-radius-bottomleft: $r;
   -moz-border-radius-bottomright: $r;
 }
+
 @mixin border-top($r) {
   -webkit-border-top-left-radius: $r;
   -webkit-border-top-right-radius: $r;
   -moz-border-radius-topleft: $r;
   -moz-border-radius-topright: $r;
 }
-@mixin button($bg-color, $border-color){
+
+@mixin button($bg-color, $border-color) {
   padding: 5px 10px;
   font-size: 1em;
   background: none;
@@ -116,7 +92,6 @@ $tab-active-bgcolor: $content-bgcolor;
   cursor: pointer;
   @include border-r(1px, $border-color, 5px);
 }
-
 
 // -----------------------------------------------------------------------------
 
@@ -128,12 +103,12 @@ p {
     margin-bottom: 0;
   }
 }
-ul,ol,li,dd,dt{}
+ul,ol,li,dd,dt {}
 form {
   input, textarea {
     font-family: sans-serif;
     @include round(5px);
-    &:focus{ background: #f5fdff url('/images/bg-textbox.png') repeat-x; outline: none;}
+    &:focus { background: #f5fdff url('/images/bg-textbox.png') repeat-x; outline: none; }
   }
   input[type=text], input[type=password], textarea {
     border: 1px solid #b9ccd1;
@@ -146,9 +121,9 @@ form {
     background-color: #eee;
     color: lighten($text-dark-color, 25%);
   }
-  input#user_submit, input#publisher_submit, #publication_submit, #page_submit{
+  input#user_submit, input#publisher_submit, #publication_submit, #page_submit {
 	  @include button(#19BAE3, #137e9a);
-	  &:hover{ background-color: #1a8aa7;}
+	  &:hover { background-color: #1a8aa7; }
   }
   
   .field_with_errors {
@@ -239,7 +214,7 @@ body {
   font-family: sans-serif;
   color: $text-dark-color;
   background-color: $footer-bgcolor;
-  h1,h2,h3,h4,h5,h6{ margin-bottom: 10px;line-height: 1.3em;}
+  h1,h2,h3,h4,h5,h6 { margin-bottom: 10px;line-height: 1.3em; }
 }
 
 .container {
@@ -255,17 +230,17 @@ body {
   display: block;
   position: relative;
   width: 950px;
-  #logo {
+  #logo a {
     @include column(3, true);
 		@include bg-image('logo.png', 326px, 87px);
   }
   #user {
-/*     @include column($blueprint-grid-columns - 3, true); */
-/*     text-align: right; */
+    //@include column($blueprint-grid-columns - 3, true);
+    //text-align: right;
 		position: absolute;
 		right: 0px;
 		top: 10px;
-		.login{
+		.login {
 			background-color: #eeeeee;
 			float: left;
 			padding: 10px;
@@ -274,27 +249,27 @@ body {
 			font-size: 0.9em;
 			@include border-bottom(5px);
 			color: #383939;
-			a{ color: #0086a8;}
-			span{ margin-right: 5px;}
+			a { color: #0086a8; }
+			span { margin-right: 5px; }
 		}
-		li{ float: left;}
-    .signup{
+		li { float: left; }
+    .signup {
 	    margin-right: 0px;
-	    a{
+	    a {
 			  @include bg-image('btn-signin-signup.png', 85px, 27px);
-			  &:hover{
+			  &:hover {
 				  background-position: 0px -27px;
 			  }
 	    }
 	  }
-    .signin a{
+    .signin a {
 		  @include bg-image('btn-signin-signup.png', 85px, 27px);
 		  background-position: 0px -54px;
-		  &:hover{
+		  &:hover {
 			  background-position: 0px -81px;
 		  }
     }
-    .signout{
+    .signout {
 	    border-left: 1px solid #CFCFCF;
 	    padding-left: 10px;
     }
@@ -307,29 +282,29 @@ body {
 #content-wrapper {
   padding: 20px 0px;
   background: url('/images/bg_content.png') ;
-  #banner{
+  #banner {
 	  @include bg-image('banner-step-to-isbn.png', 950px, 305px);
 	  cursor: default;
   }
-  .step-to-isbn{
+  .step-to-isbn {
 	  @include bg-image('h1-step-isbn.png', 326px, 36px);
 	  margin: 10px 0px 15px;
   }
-  .requset-block{
-	  @include bg-image('bg-requset-button.png', 632px, 100%);
+  .request-block {
+	  @include bg-image('bg-request-button.png', 632px, 100%);
 	  position: relative;
 	  margin: 0 auto;
 	  margin-top: 20px;
 	  text-indent: 0em;
 	  padding: 70px 0px 0px;
 	  cursor: default;
-	  p{ margin: 0px;}
-	  .requset-button{
-		  @include bg-image('btn-requset-isbn.png', 220px, 33px);
+	  p { margin: 0px; }
+	  .request-button a {
+		  @include bg-image('btn-request-isbn.png', 220px, 33px);
 		  position: absolute;
 		  top: 7px;
 		  right: 7px;
-		  &:hover{ background-position: 0px -33px;}
+		  &:hover { background-position: 0px -33px; }
 	  }
   }
 }
@@ -358,14 +333,14 @@ body {
         color: #1b94b3;
       }
     }
-    .member{ margin: 0px 20px;}
+    .member { margin: 0px 20px; }
     .right {
       float: right;
     }
   }
 }
 
-.about-block{
+.about-block {
 	padding: 20px;
 	margin-top: 20px;
 	background-color: #fff;
@@ -376,18 +351,18 @@ body {
 #footer {
   color: #4b4a4a;
   padding: 20px 0px 10px;
-  #footer-menu{
+  #footer-menu {
 	  padding: 12px 0px 0px;
 	  margin: 0px;
 	  float: left;
-	  li{
+	  li {
 		  float: left;
 		  list-style: none;
 		  font-size: 0.8em;
 	  }
-	  .member{ margin: 0px 20px;}
+	  .member { margin: 0px 20px; }
   }
-  #nstda{
+  #nstda {
 	  @include bg-image('logo-nstda.png', 106px, 47px);
 	  float: right;
   }
@@ -395,10 +370,10 @@ body {
 
 #breadcrumb {
   margin-bottom: 20px;
-  .dashboard{}
-  .cls-separator{ color: #cfcfcf;}
-  .obj-separator{}
-  .active{
+  .dashboard {}
+  .cls-separator { color: #cfcfcf; }
+  .obj-separator {}
+  .active {
 	  font-size: 0.9em;
 	  @include border-r(0px, #8c0f49,5px);
 	  background-color: #8c0f49;
@@ -408,57 +383,61 @@ body {
 
 .one-col {
   #content {
-    @include column($blueprint-grid-columns, true);
-    
+    .page {
+      @include round(5px);
+      @include border-r(1px, #eaeaea, 5px);
+      background-color: $bgcolor;
+      padding: 20px;
+    }
   }
 }
 
 .two-cols {
   overflow: hidden;
   #content {
-/*     $content-columns: ceil(3 * $blueprint-grid-columns / 4); */
-/*     @include column($content-columns); */
+    //$content-columns: ceil(3 * $blueprint-grid-columns / 4);
+    //@include column($content-columns);
     @include border-r(1px, #eaeaea, 5px);
     background-color: #fff;
     float: left;
     width: 690px;
     margin-right: 20px;
-    #breadcrumb{
+    #breadcrumb {
 	    background-color: #bf1e6b;
 	    padding: 5px 10px;
 	    color: #fff;
 	    margin: 0px;
 	    @include  border-top(5px);
-	    a{color: #fff; font-size: 0.9em; &:hover{color: #cfcfcf;}}
+	    a {color: #fff; font-size: 0.9em; &:hover {color: #cfcfcf; }}
     }
-    .title{
+    .title {
 			font-size: 1em;
 			background: url('/images/icon.png') no-repeat 0px -136px;
 			padding: 0px 0px 0px 25px;
 			margin-bottom: 15px;
     }
-    .page-block{padding: 20px; width: 650px;}
+    .page-block {padding: 20px; width: 650px; }
     .child-items {
       border-top: 1px solid #999;
       padding-top: 20px;
-      ul{ padding-left: 20px;margin: 0px;}
-      ul li{ margin: 0px;}
+      ul { padding-left: 20px;margin: 0px; }
+      ul li { margin: 0px; }
     }
     
   }
   #sidebar {
-/*     $sidebar-columns: floor($blueprint-grid-columns / 4); */
-/*     @include column($sidebar-columns, true); */
+    //$sidebar-columns: floor($blueprint-grid-columns / 4);
+    //@include column($sidebar-columns, true);
     @include border-r(1px, #eaeaea, 5px);
     background-color: #fff;
     padding: 20px 10px;
     float: left;
     width: 208px;
-    h4{ margin: 0px 0px 10px;}
-    .create-publisher a{
+    h4 { margin: 0px 0px 10px; }
+    .create-publisher a {
 	    @include bg-image('/btn-add-publisher.png', 202px, 48px);
 	    margin: 0px 0px 0px 3px;
-	    &:hover{ background-position: 0px -48px;}
+	    &:hover { background-position: 0px -48px; }
     }
     
     ul {
@@ -468,47 +447,47 @@ body {
     }
     .new_publication, .edit_publisher, .edit-publication a, 
     .print-isbn a, .print-cip a, .export-isbn a, .export-cip a, 
-    .new-page a, .edit-page a, .all-page a{
+    .new-page a, .edit-page a, .all-page a {
 	    @include bg-image('btn-add-publisher.png', 202px, 48px);
 	    background-position: 0px -96px;
 	    margin: 0px 0px 10px 3px;
-	    &:hover{ background-position: 0px -144px;}
+	    &:hover { background-position: 0px -144px; }
     }
-    .edit_publisher{
+    .edit_publisher {
 	    background-position: 0px -192px;
-	    &:hover{ background-position: 0px -240px;}
+	    &:hover { background-position: 0px -240px; }
     }
-		.edit-publication a{
+		.edit-publication a {
 			background-position: 0px -288px;
-			&:hover{ background-position: 0px -336px;}
+			&:hover { background-position: 0px -336px; }
 		}
-		.print-isbn a{
+		.print-isbn a {
 			background-position: 0px -384px;
-			&:hover{ background-position: 0px -432px;}
+			&:hover { background-position: 0px -432px; }
 		}
-		.print-cip a{
+		.print-cip a {
 			background-position: 0px -480px;
-			&:hover{ background-position: 0px -528px;}
+			&:hover { background-position: 0px -528px; }
 		}
-		.export-isbn a{
+		.export-isbn a {
 			background-position: 0px -576px;
-			&:hover{ background-position: 0px -624px;}
+			&:hover { background-position: 0px -624px; }
 		}
-		.export-cip a{
+		.export-cip a {
 			background-position: 0px -672px;
-			&:hover{ background-position: 0px -720px;}
+			&:hover { background-position: 0px -720px; }
 		}
-		.new-page a{
+		.new-page a {
 			background-position: 0px -768px;
-			&:hover{ background-position: 0px -816px;}
+			&:hover { background-position: 0px -816px; }
 		}
-		.edit-page a{
+		.edit-page a {
 			background-position: 0px -864px;
-			&:hover{ background-position: 0px -912px;}
+			&:hover { background-position: 0px -912px; }
 		}
-		.all-page a{
+		.all-page a {
 			background-position: 0px -960px;
-			&:hover{ background-position: 0px -1008px;}
+			&:hover { background-position: 0px -1008px; }
 		}
   }
 }
@@ -517,96 +496,101 @@ body {
 /*************************** End Layout ***************************/
 
 /********* ISBN Queue & CIP Queue & Completed Publications *********/
-.page{list-style: none;}
-#isbn_queue, #cip_queue, #completed{
+.page { list-style: none; }
+#isbn_queue, #cip_queue, #completed {
 	float: left;
 	width: 310px;
 	margin-right: 20px;
 	list-style: none;
 	#isbn_queue_items, #isbn_queue_items ul,
 	#cip_queue_items, #cip_queue_items ul,
-	#completed_items, #completed_items ul{ padding: 10px 0px 0px 0px; list-style: none;}
-	#completed, #completed_items .info{ width: 620px !important;}
-	#cip_queue_items li{ margin-bottom: 10px;}
+	#completed_items, #completed_items ul { padding: 10px 0px 0px 0px; list-style: none; }
+	#completed, #completed_items .info { width: 620px !important; }
+	#cip_queue_items li { margin-bottom: 10px; }
 	
-	.info{ float: left; width: 300px;
-		li{
+	.info { float: left; width: 300px;
+		li {
 			padding-left: 100px;
 			margin: 0px !important;
 			font-size: 0.9em;
-			span{
+			span {
 				float: left;
 				width: 60px;
 			}
 		}
-		.cover{
+		.cover {
 			padding-left: 10px;
 			float: left;
 			width: 88px;
-			}
+		}
 	}
-	.feature{
+	.feature {
 		background-color: #ededed;
 		@include border-r(1px , #c6c6c6, 5px);
 		padding: 7px !important;
 		float: right;
 		margin-bottom: 10px;
-		li{float: left; margin: 0px !important;}
-		a{@include bg-image('/icon.png', 18px, 17px);}
-		.update{ background-position: 0px -34px; &:hover{ background-position: 0px -51px;}}
-		.download{
+		li {float: left; margin: 0px !important; }
+		a {@include bg-image('/icon.png', 18px, 17px); }
+		.update {
+      background-position: 0px -34px;
+      &:hover { background-position: 0px -51px; }
+    }
+		.download {
 			background-position: 0px -68px;
 			height: 17px;
 			margin: 0px 12px;
-			&:hover{ background-position: 0px -85px;}}
-		.print{
+			&:hover { background-position: 0px -85px; }
+    }
+		.print {
 			background-position: 0px -102px;
 			height: 18px;
-			&:hover{ background-position: 0px -119px;}}
+			&:hover { background-position: 0px -119px; }
+    }
 	}
 }
-#cip_queue{
+#cip_queue {
 	float: left;
 	width: 310px;
 	margin-right: 0px;
 }
-#completed{
+#completed {
 	clear: both;
 	width: 650px;
-	.title{ margin-bottom: 0px !important;}
-	#completed_items{ padding: 0px;}
+	.title { margin-bottom: 0px !important; }
+	#completed_items { padding: 0px; }
 }
-.publications{
+.publications {
 	list-style: none;
 	padding: 0px !important;
-	li{
+	li {
 		float: left;
 		width: 640px;
 		margin-bottom: 10px !important;
 	}
-	.cover{
+	.cover {
 		float: left;
 		width: 88px;
 	}
 }
 
 /* .publishers-list */
-.publishers-list{
+.publishers-list {
 	margin-bottom: 10px;
 	list-style: none;
 	padding: 0px;
-	li{ margin-bottom: 10px;}
-  a{
+	li { margin-bottom: 10px; }
+  a {
     background: url('/images/ic-publishers-list.png') no-repeat 0px -17px;	
     padding: 0px 0px 0px 25px;
     height: 20px;
-    &:hover{ background-position: 0px 1px;}
+    &:hover { background-position: 0px 1px; }
   }
 }
 
 
 /* tabs */
-.isbn-tab, .cip-tab{
+.isbn-tab, .cip-tab {
 	background: #9d9d9d url(/images/bg-clip-right.png) no-repeat top right;
 	float: left;
 	padding: 5px 15px 3px 10px;
@@ -614,7 +598,7 @@ body {
 	margin-left: 10px;
 	font-size: 1em;
 }
-.h4-title{
+.h4-title {
 	background: url(/images/bg-clip-left.png) no-repeat 10px 0px;
 	float: left;
 	padding-left: 10px;
@@ -641,8 +625,8 @@ ul.page {
   color: lighten($text-color, 15%);
   padding: 10px;
 }
-.two-cols .notice, .two-cols .alert, .two-cols #error_explanation{ margin: 20px 20px 0px;}
-.notice, .alert, #error_explanation{
+.two-cols .notice, .two-cols .alert, .two-cols #error_explanation { margin: 20px 20px 0px; }
+.notice, .alert, #error_explanation {
   padding: 20px;
   margin-bottom: 15px;
 	background-color: #EAFFDE;
@@ -657,12 +641,12 @@ ul.page {
     padding-left: 0.8em;
   }
 }
-#error_explanation{
-	h2{ margin: 0px; font-size: 1.1em; font-weight: bold; color: red;}
-	ul{ margin: 0px;}
+#error_explanation {
+	h2 { margin: 0px; font-size: 1.1em; font-weight: bold; color: red; }
+	ul { margin: 0px; }
 }
-.page-block{
-	.notice, .alert{
+.page-block {
+	.notice, .alert {
 		margin: 0 20px 20px;
 	}
 }
@@ -676,7 +660,7 @@ ul.page {
 .hidden {
   display: none;
 }
-span.link{ padding: 0px 5px;}
+span.link { padding: 0px 5px; }
 
 
 /* form fancybox */
@@ -685,32 +669,32 @@ span.link{ padding: 0px 5px;}
 	background-color: none;
 }
 
-div#fancybox-content div.resizable-textarea textarea.resizable{
+div#fancybox-content div.resizable-textarea textarea.resizable {
     width: 390px;
     @include border-bottom(0px);
 }
-div#fancybox-content div.grippie{ width: 400px !important;}
-#fancybox-wrap{ width: 455px !important;}
-#fancybox-content{
+div#fancybox-content div.grippie { width: 400px !important; }
+#fancybox-wrap { width: 455px !important; }
+#fancybox-content {
 	border: none !important;
 	padding: 20px;
 	width: 420px !important;
 }
-#fancybox-content > div{ overflow: hidden !important;}
+#fancybox-content > div { overflow: hidden !important; }
 #form_update_cip {
     width: 420px;
 }
-h4.center{ line-height: 28px;}
-#fancybox-title-float-wrap{ display: none;}
-#form_update_isbn #isbn{ width: 320px;}
+h4.center { line-height: 28px; }
+#fancybox-title-float-wrap { display: none; }
+#form_update_isbn #isbn { width: 320px; }
 
 /* field set*/
-.collapsible-publisher{
+.collapsible-publisher {
 	  input, textarea {
-    &:focus{
+    &:focus {
 	    background: none;
 	    background-color: #EEEEEE ;
-     }
+    }
   }
 }
 

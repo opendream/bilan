@@ -32,6 +32,7 @@ GEM
     bcrypt-ruby (2.1.4)
     bluecloth (2.0.11)
     builder (2.1.2)
+    cancan (1.6.4)
     compass (0.10.6)
       haml (>= 3.0.4)
     devise (1.1.5)
@@ -99,6 +100,7 @@ PLATFORMS
 
 DEPENDENCIES
   bluecloth
+  cancan
   compass (>= 0.10.6)
   devise
   gettext (>= 1.9.3)

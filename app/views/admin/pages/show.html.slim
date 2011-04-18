@@ -1,11 +1,13 @@
-.page-title
-	h3 = @page.title
-.page-body
-	== BlueCloth.new(@page.body).to_html
+.page
+	.page-title
+		h3 = @page.title
+	.page-body
+		== BlueCloth.new(@page.body).to_html
 
 - content_for :sidebar do
-	ul
-		li.edit-page
-			= link_to(_('Edit'), edit_admin_page_path(@page.id))
-		li.all-page
-			= link_to(_('All pages'), admin_pages_path)
+	- if can? :manage, @page
+		ul
+			li.edit-page
+				= link_to(_('Edit'), edit_admin_page_path(@page.id))
+			li.all-page
+				= link_to(_('All pages'), admin_pages_path)

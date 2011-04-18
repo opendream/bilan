@@ -1,13 +1,16 @@
-h1.step-to-isbn = _('Steps to request ISBN & CIP')
-div#banner
-.requset-block
-	.requset-button = link_to(_('แบบฟอร์มขอ ISBN และ CIP'), '#')
-	p
-		= _('ก่อนกรอกแบบฟอร์มเพื่อขอรับ ISBN และ CIP นั้น ต้องเป็นสมัครสมาชิกของเว็บไซต์')
-		span.link = link_to(_('Sign in'), '#')
-		span |
-		span.link = link_to(_('Register'), '#')
-		
-.about-block
-	h2 = _('Steps to request ISBN & CIP')
-	p = _('Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Aenean lacinia bibendum nulla sed consectetur.')
+.front
+	h1.step-to-isbn = _('Steps to request ISBN & CIP')
+
+	div#banner
+
+	.request-block
+		.request-button = link_to(_('ISBN & CIP request form'), '/dashboard')
+		/p
+			= _('Something')
+			span.link = link_to(_('Sign in'), new_user_session_path)
+			span |
+			span.link = link_to(_('Sign up'), new_user_registration_path)
+			
+	/.about-block
+		h2 = _('Steps to request ISBN & CIP')
+		p = _('Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Aenean lacinia bibendum nulla sed consectetur.')
