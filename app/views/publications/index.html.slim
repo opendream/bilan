@@ -7,7 +7,10 @@ h2 = _('Publications')
 		- @publications.each do |p|
 			li
 				.cover
+					- if p.assets.empty?
 						= image_tag('book-cover.png')
+					- else
+						= image_tag(p.assets[0].attachment.url(:small))
 				.item-detail
 					a href="#{publisher_publication_path p.publisher.id, p.id}" = p.title
 					= " (%s)" % p.author

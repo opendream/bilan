@@ -1,7 +1,9 @@
 h2 = _('Publication details')
 
-- unless @publication.assets.empty?
-	p.cover
+p.cover
+	- if @publication.assets.empty?
+		= image_tag 'book-cover.png'
+	- else
 		= image_tag @publication.assets[0].attachment.url(:small)
 p
 	label #{_('Title')}:

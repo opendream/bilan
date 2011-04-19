@@ -14,7 +14,7 @@
 		p
 			= f.label :isbn, _('ISBN')
 			br
-			= f.text_field :isbn
+			= f.text_field :isbn, :maxlength => 13
 		p
 			= f.label :cip, _('CIP')
 			br
@@ -78,7 +78,7 @@
 			- if asset.object.new_record?
 				= asset.file_field :attachment
 
-	fieldset.collapsible-publisher
+	fieldset.collapsible.publisher
 		legend = _('Publisher')
 		p.tip
 			= _('The publisher form below is readonly. If you want to edit the information, ')

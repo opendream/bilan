@@ -190,6 +190,14 @@ fieldset {
         background: transparent url('/images/icons/collapsed.png') no-repeat scroll 0 0;
     }
   }
+  &.publisher {
+	  input, textarea {
+      &:focus {
+        background: none;
+        background-color: #EEEEEE ;
+      }
+    }
+  }
 }
 
 label {
@@ -362,7 +370,7 @@ body {
 	  }
 	  .member { margin: 0px 20px; }
   }
-  #nstda {
+  #nstda a {
 	  @include bg-image('logo-nstda.png', 106px, 47px);
 	  float: right;
   }
@@ -663,12 +671,12 @@ ul.page {
 span.link { padding: 0px 5px; }
 
 
-/* form fancybox */
+/* FancyBox */
+
 .fancybox-ie6 #fancybox-close {
 	background: url(/images/fancybox.png) repeat -40px 0px;
 	background-color: none;
 }
-
 div#fancybox-content div.resizable-textarea textarea.resizable {
     width: 390px;
     @include border-bottom(0px);
@@ -678,23 +686,9 @@ div#fancybox-content div.grippie { width: 400px !important; }
 #fancybox-content {
 	border: none !important;
 	padding: 20px;
-	width: 420px !important;
 }
 #fancybox-content > div { overflow: hidden !important; }
-#form_update_cip {
-    width: 420px;
-}
+#form_update_cip { width: 420px; }
 h4.center { line-height: 28px; }
-#fancybox-title-float-wrap { display: none; }
 #form_update_isbn #isbn { width: 320px; }
-
-/* field set*/
-.collapsible-publisher {
-	  input, textarea {
-    &:focus {
-	    background: none;
-	    background-color: #EEEEEE ;
-    }
-  }
-}
-
+#fancybox-title-float-wrap { display: none; }

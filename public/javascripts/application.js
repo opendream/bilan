@@ -3,6 +3,7 @@ $(document).ready(function() {
     // INITIATE ----------------------------------------------------------------
 
     $('fieldset.collapsible').collapse();
+
     $('textarea.resizable:not(.processed)').TextAreaResizer();
 
     $('#link_edit_publisher').fancybox({
@@ -78,46 +79,63 @@ $(document).ready(function() {
     var update_isbn_url = '';
     $('a[id^="isbn_"]').click(function() {
         update_isbn_url = $(this).attr('href');
-        var title = $(this).parents('ul>li').eq(1).children('div.item_title').children('a').text();
+        var title = $(this).parents('ul>li').eq(1).children('div.item_title')
+                        .children().children().eq(1).children('a').text();
         $('#form_update_isbn span.title').html(title);
         $('#isbn').val('').focus();
     });
     $('#update_isbn').click(function() {
-        $.get(
-            update_isbn_url,
-            { isbn: $('#isbn').val() },
-            function(data) {
-                var target_id = update_isbn_url.split('/')[4];
-                var target_dom = 'li#isbn_item_' + target_id;
-                var target_item = $(target_dom).html().replace(/isbn/g, 'cip');
-                $('ul#isbn_queue_items').children().remove(target_dom);
-                $('ul#cip_queue_items').append('<li id="cip_item_'+ target_id +'">'+ target_item +'</li>');
-            }
-        );
-        $.fancybox.close();
+        if (jQuery.trim($('#isbn').val()) != '') {
+            $.get(
+                update_isbn_url,
+                { isbn: $('#isbn').val() },
+                function(data) {
+                    if (data.publication.isbn10 != null || data.publication.isbn13 != null) {
+                        var target_id = update_isbn_url.split('/')[4];
+                        var target_dom = 'li#isbn_item_' + target_id;
+
+                        // Set ISBN
+                        if (data.publication.isbn10 != null) {
+                            var isbn = data.publication.isbn10;
+                        } else if (data.publication.isbn13 != null) {
+                            var isbn = data.publication.isbn13;
+                        }
+                        $(target_dom).children().eq(0).children().children().eq(3).html(isbn);
+
+                        var target_item = $(target_dom).html().replace(/isbn/g, 'cip');
+                        $('ul#isbn_queue_items').children().remove(target_dom);
+                        $('ul#cip_queue_items').append('<li id="cip_item_'+ target_id +'">'+ target_item +'</li>');
+                    }
+                }
+            );
+            $.fancybox.close();
+        }
     });
 
     var update_cip_url = '';
     $('a[id^="cip_"]').live('click', function() {
         update_cip_url = $(this).attr('href');
-        title = $(this).parents('ul>li').eq(1).children('div.item_title').children('a').text();
+        var title = $(this).parents('ul>li').eq(1).children('div.item_title')
+                        .children().children().eq(1).children('a').text();
         $('#form_update_cip span.title').html(title);
         $('#cip').val('').focus();
     });
     $('#update_cip').live('click', function() {
-        $.get(
-            update_cip_url,
-            { cip: $('#cip').val() },
-            function(data) {
-                var target_id = update_cip_url.split('/')[4];
-                var target_dom = 'li#cip_item_' + target_id;
-                var target_item = $(target_dom);
-                target_item.children().remove('.item_action');
-                $('ul#cip_queue_items').children().remove(target_dom);
-                $('ul#completed_items').prepend(target_item);
-            }
-        );
-        $.fancybox.close();
+        if (jQuery.trim($('#cip').val()) != '') {
+            $.get(
+                update_cip_url,
+                { cip: $('#cip').val() },
+                function(data) {
+                    var target_id = update_cip_url.split('/')[4];
+                    var target_dom = 'li#cip_item_' + target_id;
+                    var target_item = $(target_dom);
+                    target_item.children().remove('.item_action');
+                    $('ul#cip_queue_items').children().remove(target_dom);
+                    $('ul#completed_items').prepend(target_item);
+                }
+            );
+            $.fancybox.close();
+        }
     });
 
 
@@ -173,9 +191,12 @@ $(document).ready(function() {
         }
     });
 
-
+    // Display printed page in a new window
     $('a.print').click(function(e) {
         e.preventDefault();
         window.open($(this).attr('href'));
     });
+
+    // Allow only a numeric for ISBN textbox.
+    $('#isbn, #publication_isbn').numeric();
 });

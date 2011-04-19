@@ -1,7 +1,9 @@
 h2 = _('Publisher details')
 
-- unless @publisher.assets.empty?
-	p.logo
+p.logo
+	- if @publisher.assets.empty?
+		= image_tag 'book-cover.png'
+	- else
 		= image_tag @publisher.assets[0].attachment.url(:small)
 p
 	label #{_('Name')}:
@@ -59,7 +61,10 @@ p
 			- @publisher.publications.order('created_at DESC').limit(15).each do |p|
 				li
 					.cover
-						= image_tag('book-cover.png')
+						- if p.assets.empty?
+							= image_tag('book-cover.png')
+						- else
+							= image_tag(p.assets[0].attachment.url(:small))
 					.item-detail
 						a href="#{publisher_publication_path @publisher.id, p.id}" = p.title
 						= ' (%s)' % p.author

@@ -1,4 +1,4 @@
-h2.title = _('Dashboard')
+h2.title = _('Waiting list of publications')
 ul.page
 	li#isbn_queue
 		.h4-title
@@ -11,18 +11,24 @@ ul.page
 						.item_title
 							ul.info
 								li.cover
-									= image_tag('book-cover.png')
-								li 
-									= link_to(p.title, publisher_publication_path(p.publisher.id, p.id))
-								li
-									= p.author
+									- if p.assets.empty?
+										= image_tag('book-cover.png')
+									- else
+										= image_tag(p.assets[0].attachment.url(:small))
+								li = link_to(p.title, publisher_publication_path(p.publisher.id, p.id))
+								li = p.author
+								li = p.get_isbn
 						.item_action
 							ul.feature
 								li = link_to(_('Update'), \
 								     "#{update_isbn_publisher_publication_path p.publisher.id, p.id}", \
 										 :id => 'isbn_%s' % p.id, :class => 'update', :title => 'update')
-								li = link_to(_('Download'), export_isbn_publisher_publication_path(p.publisher.id, p.id), :class => 'download', :title => 'download')
-								li = link_to(_('Print'), '#', :class => 'print', :title => 'print')
+								li = link_to(_('Download'), export_isbn_publisher_publication_path(p.publisher.id, p.id), \
+										 :class => 'download', :title => 'download')
+								li = link_to(_('Print'), print_isbn_publisher_publication_path(p.publisher.id, p.id), \
+										 :class => 'print', :title => 'print')
+		- else
+			= _('There are no items.')
 
 	li#cip_queue
 		.h4-title
@@ -34,24 +40,28 @@ ul.page
 						.item_title
 							ul.info
 								li.cover
-									= image_tag('book-cover.png')
-								li
-									= link_to(p.title, publisher_publication_path(p.publisher.id, p.id))
-								li
-									= p.author
-								li
-							  	= p.get_isbn
+									- if p.assets.empty?
+										= image_tag('book-cover.png')
+									- else
+										= image_tag(p.assets[0].attachment.url(:small))
+								li = link_to(p.title, publisher_publication_path(p.publisher.id, p.id))
+								li = p.author
+								li = p.get_isbn
 						.item_action
 							ul.feature
 								li = link_to(_('update'), \
 								     "#{update_cip_publisher_publication_path p.publisher.id, p.id}", \
 										 :id => 'cip_%s' % p.id, :class => 'update', :title => 'update')
-								li = link_to(_('download'), export_cip_publisher_publication_path(p.publisher.id, p.id), :class => 'download', :title => 'download')
-								li = link_to(_('Print'), '#', :class => 'print', :title => 'print')
+								li = link_to(_('download'), export_cip_publisher_publication_path(p.publisher.id, p.id), \
+								     :class => 'download', :title => 'download')
+								li = link_to(_('Print'), print_cip_publisher_publication_path(p.publisher.id, p.id), \
+								     :class => 'print', :title => 'print')
+		- else
+			= _('There are no items.')
 							  
 
 	li#completed
-		h4.title = _('Completed Publications')
+		h2.title = _('Completed publications')
 		- if @completed_publications.size > 0
 			ul#completed_items
 				- @completed_publications.each do |p|
@@ -64,6 +74,8 @@ ul.page
 									= link_to(p.title, publisher_publication_path(p.publisher.id, p.id))
 								li
 									= p.author
+		- else
+			= _('There are no items.')
 
 - content_for :sidebar do
 	h4 = _('My Publishers List')
@@ -87,7 +99,7 @@ ul.page
 				span.title
 			p
 				= label_tag :isbn, _('ISBN') + ': '
-				= text_field_tag :isbn
+				= text_field_tag :isbn, nil, :maxlength => 13
 			p.center.last
 				input id="update_isbn" type="button" value="#{_('Update')}"
 
